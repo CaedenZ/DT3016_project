@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/troll.png-78efc50bfccaa17f54d40cfea3eef5f5.stex"
+path="res://.import/No Out (24x8).png-c1c96b5ead3849a0963b131e96e2ffa2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://troll.png"
-dest_files=[ "res://.import/troll.png-78efc50bfccaa17f54d40cfea3eef5f5.stex" ]
+source_file="res://assets/Kings and Pigs/Sprites/13-Dialogue Boxes/No Out (24x8).png"
+dest_files=[ "res://.import/No Out (24x8).png-c1c96b5ead3849a0963b131e96e2ffa2.stex" ]
 
 [params]
 
