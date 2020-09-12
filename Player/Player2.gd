@@ -20,13 +20,13 @@ func _ready():
 	statelabel.text = "running"
 	
 func _physics_process(_delta):
-	if Input.is_action_just_pressed("ChangeDirectionA"):
+	if Input.is_action_just_pressed("ChangeDirectionB"):
 		direction *= -1
-	if Input.is_action_just_pressed("ActionA"):
+	if Input.is_action_just_pressed("ActionB"):
 		wantstojump = true
 		actiontimer.start()
 
-	if Input.is_action_just_released("ActionA"):
+	if Input.is_action_just_released("ActionB"):
 		velocity.y = jump_power
 		wantstojump = false
 		chargingjump = false
