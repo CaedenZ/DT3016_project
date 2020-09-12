@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Tilesets/ExtTile.tres" type="TileSet" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/Player2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://MainGame/MainGame.gd" type="Script" id=4]
+[ext_resource path="res://Items/ItemBox.tscn" type="PackedScene" id=5]
 
 [node name="MainGame" type="Node2D"]
+script = ExtResource( 4 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -17,3 +20,14 @@ position = Vector2( 264, 176 )
 
 [node name="Player2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 120, 176 )
+collision_mask = 1
+
+[node name="GameTimer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 20.0
+autostart = true
+
+[node name="ItemBox" parent="." instance=ExtResource( 5 )]
+position = Vector2( 406.5, 210.5 )
+scale = Vector2( 0.890625, 0.421875 )
+[connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]

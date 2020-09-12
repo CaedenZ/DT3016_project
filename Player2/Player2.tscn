@@ -8,7 +8,6 @@ extents = Vector2( 16, 16 )
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
-collision_mask = 7
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -20,6 +19,7 @@ shape = SubResource( 1 )
 
 [node name="ActionTimer" type="Timer" parent="."]
 process_mode = 0
+wait_time = 0.1
 one_shot = true
 
 [node name="StateLabel" type="Label" parent="."]
