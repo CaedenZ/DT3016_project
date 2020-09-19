@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 
 const MAXSPEED = 200
-const DASHSPEED = 400
+const DASHSPEED = 600
 const FLOOR_NORMAL = Vector2(0, -1)
 const GRAVITY = 20
 const MAX_JUMP_POWER = -600
@@ -20,11 +20,13 @@ var stomped_on := false
 var wantstodash := false
 var previousdirection := 0
 var dashing := false
+var dashoncooldown := false
 
 onready var actiontimer = $ActionTimer
 onready var weapontimer = $WeaponTimer
-onready var dashtimer = $DashTimer
+onready var dashtimer = $DashInputTimer
 onready var dashdurationtimer = $DashDurationTimer
+onready var dashcooldown = $DashCooldown
 onready var statelabel = $StateLabel
 onready var itemlabel = $ItemLabel
 onready var lifelabel = $LifeLabel
@@ -46,39 +48,36 @@ func _physics_process(delta):
 	elif !raycast.is_colliding():
 		stomped_on = false
 		
-	
-	if Input.is_action_pressed("Left_A"):
-		direction = -1
-		previousdirection = -1
-	elif Input.is_action_pressed("Right_A"):
-		direction = 1
-		previousdirection = 1
-	else:
-		direction = 0
-		previousdirection = 0
-	
-	if Input.is_action_just_pressed("Left_A"):
+	if Input.is_action_just_pressed("Left_A"):		
 		if wantstodash:
-			if previousdirection == 1:
-				pass
-			else:
-				dashdurationtimer.start()
-				dashing = true
-				print("dashing left")
+			if previousdirection == -1 and !dashing:
+				if !dashoncooldown:
+					dashdurationtimer.start()
+					dashing = true
+					print("dashing left")
 		wantstodash = true
 		dashtimer.start()
+		previousdirection = -1
 	if Input.is_action_just_pressed("Right_A"):
 		if wantstodash:
-			if previousdirection == -1:
-				pass
-			else:
-				dashdurationtimer.start()
-				dashing = true
-				print("dashing right")
+			if previousdirection == 1 and !dashing:
+				if !dashoncooldown:
+					dashdurationtimer.start()
+					dashing = true
+					print("dashing right")
 		wantstodash = true
 		dashtimer.start()
+		previousdirection = 1
 	if dashing:
 		speed = DASHSPEED
+
+
+	if Input.is_action_pressed("Left_A"):
+		direction = -1
+	elif Input.is_action_pressed("Right_A"):
+		direction = 1
+	#else:
+		#direction = 0
 
 	if Input.is_action_just_pressed("ActionA"):
 		wantstojump = true
@@ -166,3 +165,10 @@ func _on_DashTimer_timeout():
 func _on_DashDurationTimer_timeout():
 	speed = MAXSPEED
 	dashing = false
+	dashoncooldown = true
+	dashcooldown.start()
+	
+
+
+func _on_DashCooldown_timeout():
+	dashoncooldown = false
