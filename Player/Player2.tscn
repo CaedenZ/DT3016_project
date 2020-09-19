@@ -6,4 +6,7 @@
 [node name="Player2" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
+[node name="Sprite" parent="." index="0"]
+modulate = Color( 0, 0, 0, 1 )
+
 [editable path="WeaponA"]

@@ -39,8 +39,12 @@ func _physics_process(_delta):
 	elif !raycast.is_colliding():
 		stomped_on = false
 		
-	if Input.is_action_just_pressed("ChangeDirectionB"):
-		direction *= -1
+	if Input.is_action_pressed("Left_B"):
+		direction = -1
+	elif Input.is_action_pressed("Right_B"):
+		direction = 1
+	else:
+		direction = 0
 	if Input.is_action_just_pressed("ActionB"):
 		wantstojump = true
 		actiontimer.start()
