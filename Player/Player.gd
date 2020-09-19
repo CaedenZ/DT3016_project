@@ -21,6 +21,7 @@ var wantstodash := false
 var previousdirection := 0
 var dashing := false
 var dashoncooldown := false
+var weaponNumber := 0
 
 onready var actiontimer = $ActionTimer
 onready var weapontimer = $WeaponTimer
@@ -30,16 +31,19 @@ onready var dashcooldown = $DashCooldown
 onready var statelabel = $StateLabel
 onready var itemlabel = $ItemLabel
 onready var lifelabel = $LifeLabel
-onready var weaponcarried = $WeaponA
+onready var weaponcarriedA = $WeaponA
+onready var weaponcarriedB = $WeaponB
 onready var cooldown = $Cooldown
 onready var raycast = $RayCast2D
 
 func _ready():
 	statelabel.text = "running"
 	lifelabel.text = str(life)
-	weaponcarried.get_node("Hitbox/CollisionShape2D").disabled = true
-	weaponcarried.connect("playerhit", self, "player_hit")
-	
+	weaponcarriedA.get_node("Hitbox/CollisionShape2D").disabled = true
+	weaponcarriedA.connect("playerhit", self, "player_hit")
+	weaponcarriedB.get_node("Hitbox/CollisionShape2D").disabled = true
+	weaponcarriedB.connect("playerhit", self, "player_hit")
+	itemlabel.text = str(weaponNumber)
 func _physics_process(delta):
 	if raycast.is_colliding() and !stomped_on:
 		print("jumped on")
@@ -120,27 +124,36 @@ func _on_ActionTimer_timeout():
 		statelabel.text = "charging jump"
 
 func pickup():
-	var number = randi() % 10
-	itemlabel.text = str(number)
+	var weaponNumber = randi() % 3 - 1
+	itemlabel.text = str(weaponNumber)
 
 func attack():
 	if can_attack:
-		can_attack = false
-		weaponcarried.show()
-		weaponcarried.get_node("Hitbox/CollisionShape2D").disabled = false
-		if direction == 1:
-			weaponcarried.position.x = abs(weaponcarried.position.x)
-		elif direction == -1:
-			weaponcarried.position.x = abs(weaponcarried.position.x) * -1
-		
-		weapontimer.start()
-		#weaponcarried.hide()
+		match weaponNumber:
+				0:
+					print("We are number one!")
+				1:
+					print("Two are better than one!")
+					can_attack = false
+					weaponcarriedA.show()
+					weaponcarriedA.get_node("Hitbox/CollisionShape2D").disabled = false
+					if direction == 1:
+						weaponcarriedA.position.x = abs(weaponcarriedA.position.x)
+					elif direction == -1:
+						weaponcarriedA.position.x = abs(weaponcarriedA.position.x) * -1
+					weapontimer.start()
+				2:
+					print("Oh snap! It's a string!")
+					weaponcarriedB.show()
+					weaponcarriedB.get_node("Hitbox/CollisionShape2D").disabled = false
+					#TODO: range weapon
+
 
 
 	
 func _on_WeaponTimer_timeout():
-	weaponcarried.hide()
-	weaponcarried.get_node("Hitbox/CollisionShape2D").disabled = true
+	weaponcarriedA.hide()
+	weaponcarriedA.get_node("Hitbox/CollisionShape2D").disabled = true
 	cooldown.start()
 
 

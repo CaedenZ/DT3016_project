@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Balloon start riding 1.wav-345ac6697252babc01d6c7323a8d6dbf.sample"
+
+[deps]
+
+source_file="res://Materials/Balloon start riding 1.wav"
+dest_files=[ "res://.import/Balloon start riding 1.wav-345ac6697252babc01d6c7323a8d6dbf.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
