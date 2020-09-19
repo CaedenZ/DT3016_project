@@ -5,7 +5,7 @@ const MAXSPEED = 200
 const DASHSPEED = 600
 const FLOOR_NORMAL = Vector2(0, -1)
 const GRAVITY = 20
-const MAX_JUMP_POWER = -600
+const MAX_JUMP_POWER = -500
 
 var speed := MAXSPEED
 var direction := -1
@@ -21,6 +21,7 @@ var wantstodash := false
 var previousdirection := 0
 var dashing := false
 var dashoncooldown := false
+var weaponNumber := 1
 
 onready var actiontimer = $ActionTimer
 onready var weapontimer = $WeaponTimer
@@ -116,7 +117,7 @@ func _physics_process(delta):
 func _on_ActionTimer_timeout():
 	if wantstojump:
 		chargingjump = true
-		jump_power = -50
+		jump_power = -200
 		statelabel.text = "charging jump"
 
 func pickup():
