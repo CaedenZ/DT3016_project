@@ -23,7 +23,7 @@ position = Vector2( 160, 200 )
 position = Vector2( 512, 192 )
 
 [node name="Player3" parent="." instance=ExtResource( 6 )]
-position = Vector2( 304, 112 )
+position = Vector2( 984, 144 )
 
 [node name="GameTimer" type="Timer" parent="."]
 process_mode = 0
