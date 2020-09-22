@@ -115,6 +115,12 @@ func _physics_process(delta):
 		jumped = false
 		if statelabel.text == "jump":
 			statelabel.text = "running"
+	if position.x>640:
+		position.x=0
+	if position.x<0:
+		position.x=640
+	if position.y>360:
+		position.y=0
 
 
 func _on_ActionTimer_timeout():
