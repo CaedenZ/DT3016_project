@@ -72,9 +72,14 @@ Right_A={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"unicode":0,"echo":false,"script":null)
  ]
 }
-ActionA={
+Jump_A={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"unicode":0,"echo":false,"script":null)
+ ]
+}
+Action_A={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":70,"unicode":0,"echo":false,"script":null)
  ]
 }
 Left_B={
@@ -119,7 +124,10 @@ ActionC={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Item"
 2d_physics/layer_4="Hitbox"
-2d_physics/layer_5="Hurtbox"
+2d_physics/layer_5="HurtboxA"
+2d_physics/layer_6="HurtboxB"
+2d_physics/layer_7="HurtboxC"
+2d_physics/layer_8="HurtboxD"
 
 [rendering]
 

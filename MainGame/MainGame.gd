@@ -16,7 +16,7 @@ func _physics_process(delta):
 		get_tree().change_scene("res://MainGame/MainGame.tscn")
 
 func updateplayer(playerid):
-	#print(playerid)
+	print(playerid)
 	match playerid:
 		"Player":
 			print("Player 1 received")
@@ -26,4 +26,15 @@ func updateplayer(playerid):
 
 func _on_GameTimer_timeout():
 	print("Time 20s")
+	pass # Replace with function body.
+
+
+func _on_ItemTimer_timeout():
+	var Itembox = load("res://Items/ItemBox.tscn")
+	var box = Itembox.instance()
+	var currentscene = get_tree().current_scene
+	currentscene.add_child(box)
+	box.position.x = randi() % 640
+	box.position.y = randi() % 360
+	box.connect("playertouch", self, "updateplayer")
 	pass # Replace with function body.
