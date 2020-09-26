@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Tilesets/NewMap.tres" type="TileSet" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -14,8 +14,10 @@
 [ext_resource path="res://Materials/stringstar fields/rock.png" type="Texture" id=12]
 [ext_resource path="res://Materials/stringstar fields/deco2.png" type="Texture" id=13]
 [ext_resource path="res://Materials/stringstar fields/plant1.png" type="Texture" id=14]
+[ext_resource path="res://Particles/fireflies.tscn" type="PackedScene" id=15]
 
 [node name="MainGame" type="Node2D"]
+position = Vector2( 0.971313, -2.67352 )
 script = ExtResource( 4 )
 
 [node name="Background1" type="Sprite" parent="."]
@@ -33,6 +35,11 @@ position = Vector2( 319.259, 149.016 )
 scale = Vector2( 2.22025, 2.23351 )
 texture = ExtResource( 8 )
 
+[node name="Particles2D" parent="." instance=ExtResource( 15 )]
+position = Vector2( 322.988, 183.646 )
+scale = Vector2( 1.03593, 0.774355 )
+amount = 360
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
@@ -46,7 +53,6 @@ texture = ExtResource( 12 )
 
 [node name="Rock2" type="Sprite" parent="Rock"]
 position = Vector2( -71.1579, -142.56 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 12 )
 
 [node name="Bush" type="Sprite" parent="."]
@@ -86,32 +92,26 @@ texture = ExtResource( 14 )
 
 [node name="Plant5" type="Sprite" parent="Plant1"]
 position = Vector2( 383.194, 68.2393 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 14 )
 
 [node name="Plant6" type="Sprite" parent="Plant1"]
 position = Vector2( 224.309, -28.6803 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 14 )
 
 [node name="Plant2" type="Sprite" parent="Plant1"]
 position = Vector2( 47.1983, 68.2393 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 14 )
 
 [node name="Plant3" type="Sprite" parent="Plant1"]
 position = Vector2( 34.1136, 67.2504 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 14 )
 
 [node name="Plant4" type="Sprite" parent="Plant1"]
 position = Vector2( 19.627, 73.1842 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 14 )
 
 [node name="Plant7" type="Sprite" parent="Plant1"]
 position = Vector2( 333.192, -89.5023 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 14 )
 
 [node name="Fruit" type="Sprite" parent="."]
@@ -121,32 +121,26 @@ texture = ExtResource( 13 )
 
 [node name="Background5" type="Sprite" parent="Fruit"]
 position = Vector2( 67.8056, -24.0145 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 13 )
 
 [node name="Background6" type="Sprite" parent="Fruit"]
 position = Vector2( 207.302, 57.9173 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 13 )
 
 [node name="Background7" type="Sprite" parent="Fruit"]
 position = Vector2( 32.8434, 59.6831 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 13 )
 
 [node name="Background8" type="Sprite" parent="Fruit"]
 position = Vector2( -60.7425, 85.4633 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 13 )
 
 [node name="Background9" type="Sprite" parent="Fruit"]
 position = Vector2( -1.94621, 149.719 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 13 )
 
 [node name="Background10" type="Sprite" parent="Fruit"]
 position = Vector2( 217.7, 148.879 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 13 )
 
 [node name="Stars" type="Sprite" parent="."]
@@ -196,7 +190,7 @@ position = Vector2( 808, 216 )
 scale = Vector2( 0.890625, 0.421875 )
 
 [node name="ItemTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 30.0
 autostart = true
 [connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]
 [connection signal="timeout" from="ItemTimer" to="." method="_on_ItemTimer_timeout"]
