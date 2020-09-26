@@ -22,6 +22,7 @@ var previousdirection := 0
 var dashing := false
 var dashoncooldown := false
 var weaponNumber := 1
+var count := 3
 
 onready var actiontimer = $ActionTimer
 onready var weapontimer = $WeaponTimer
@@ -164,7 +165,12 @@ func take_damage(damage):
 	life -= damage
 	lifelabel.text = str(life)
 	if life <= 0:
-		queue_free()
+		count -= 1
+		if count <= 0:
+			queue_free()
+		life = 5
+		position.x = 100
+		position.y = 200
 
 func _on_Cooldown_timeout():
 	can_attack = true
