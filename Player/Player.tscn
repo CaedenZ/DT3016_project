@@ -5,8 +5,6 @@
 [ext_resource path="res://Items/WeaponA.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/16x16 RPG Item Pack/Item__12.png" type="Texture" id=4]
 
-<<<<<<< HEAD
-=======
 [sub_resource type="Animation" id=10]
 resource_name = "attackleft"
 length = 0.4
@@ -163,7 +161,6 @@ tracks/5/keys = {
 } ]
 }
 
->>>>>>> 7fb224e32abb72a28c8ee24f09259f390006bead
 [sub_resource type="Animation" id=1]
 resource_name = "fall"
 length = 0.1
@@ -249,11 +246,8 @@ hframes = 32
 frame = 24
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-<<<<<<< HEAD
-=======
 anims/attackleft = SubResource( 10 )
 anims/attackright = SubResource( 9 )
->>>>>>> 7fb224e32abb72a28c8ee24f09259f390006bead
 anims/fall = SubResource( 1 )
 anims/hit = SubResource( 2 )
 anims/idle = SubResource( 3 )
