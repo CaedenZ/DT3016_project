@@ -1,9 +1,169 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Materials/Free/Main Characters/Mask Dude/spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://Items/WeaponA.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/16x16 RPG Item Pack/Item__12.png" type="Texture" id=4]
 
+<<<<<<< HEAD
+=======
+[sub_resource type="Animation" id=10]
+resource_name = "attackleft"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("WeaponA:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 21, -12 ), Vector2( -9, -11 ), Vector2( -21, 7 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("WeaponA:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 90.0, 7.77387, -35.6636 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("WeaponA:flip_h")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "end_attack"
+} ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "attackright"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("WeaponA:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -81.6016, -39.5015, 35.6863 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("WeaponA:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -24, -16 ), Vector2( 5.72205e-06, -16 ), Vector2( 16, 8 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("WeaponA:flip_h")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite:flip_h")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "end_attack"
+} ]
+}
+
+>>>>>>> 7fb224e32abb72a28c8ee24f09259f390006bead
 [sub_resource type="Animation" id=1]
 resource_name = "fall"
 length = 0.1
@@ -89,6 +249,11 @@ hframes = 32
 frame = 24
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+<<<<<<< HEAD
+=======
+anims/attackleft = SubResource( 10 )
+anims/attackright = SubResource( 9 )
+>>>>>>> 7fb224e32abb72a28c8ee24f09259f390006bead
 anims/fall = SubResource( 1 )
 anims/hit = SubResource( 2 )
 anims/idle = SubResource( 3 )
@@ -100,7 +265,6 @@ visible = false
 shape = SubResource( 6 )
 
 [node name="Hurtbox" type="Area2D" parent="."]
-visible = false
 collision_layer = 16
 collision_mask = 0
 
@@ -165,10 +329,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="WeaponA" parent="." instance=ExtResource( 3 )]
-visible = false
-position = Vector2( 48, 0 )
-
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2( 0, -19 )
 enabled = true
@@ -176,6 +336,17 @@ cast_to = Vector2( 0, -1 )
 collision_mask = 16
 collide_with_areas = true
 collide_with_bodies = false
+
+[node name="WeaponA" parent="." instance=ExtResource( 3 )]
+modulate = Color( 1, 1, 1, 1 )
+position = Vector2( 16, 8 )
+rotation = 0.622843
+scale = Vector2( 3, 3 )
+texture = ExtResource( 4 )
+flip_h = true
+
+[node name="Hitbox" parent="WeaponA" index="0"]
+collision_mask = 224
 
 [node name="WeaponB" type="Sprite" parent="."]
 visible = false
