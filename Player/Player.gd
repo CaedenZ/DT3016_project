@@ -23,6 +23,7 @@ var previousdirection := 0
 var dashing := false
 var dashoncooldown := false
 var weaponNumber := 1
+var attack := false
 
 onready var actiontimer = $ActionTimer
 onready var weapontimer = $WeaponTimer
@@ -89,15 +90,19 @@ func _physics_process(delta):
 		sprite.flip_h = false
 	#else:
 		#direction = 0
-	if Input.is_action_just_pressed("ActionA"):
+	if Input.is_action_just_pressed("Jump_A"):
 		if is_on_floor():
 			velocity.y = JUMP_POWER
-			animationplayer.play("jump")
-	if Input.is_action_just_released("ActionA"):
+			if can_attack:
+				animationplayer.play("jump")
+	if Input.is_action_just_released("Jump_A"):
 		if !is_on_floor():
-			animationplayer.play("fall")
+			if can_attack:
+				animationplayer.play("fall")
 			if velocity.y < 0:
 				velocity.y *= 0.5
+	if Input.is_action_just_pressed("Action_A"):
+		attack()
 #	if Input.is_action_just_pressed("ActionA"):
 #		wantstojump = true
 #		actiontimer.start()
@@ -127,7 +132,8 @@ func _physics_process(delta):
 	velocity.y += GRAVITY
 	#move_and_collide(velocity*delta)
 	if is_on_floor():
-		animationplayer.play("run")
+		if can_attack:
+			animationplayer.play("run")
 		if direction == -1:
 			sprite.flip_h = true
 		else:
@@ -152,6 +158,8 @@ func _on_ActionTimer_timeout():
 func pickup():
 	weaponNumber = randi() % 3
 	itemlabel.text = str(weaponNumber)
+	if weaponNumber == 1:
+		weaponcarriedA.show()
 
 func attack():
 	if can_attack:
@@ -161,13 +169,13 @@ func attack():
 				1:
 					print("Two are better than one!")
 					can_attack = false
-					weaponcarriedA.show()
 					weaponcarriedA.get_node("Hitbox/CollisionShape2D").disabled = false
 					if direction == 1:
-						weaponcarriedA.position.x = abs(weaponcarriedA.position.x)
+						animationplayer.play("attackright")
 					elif direction == -1:
-						weaponcarriedA.position.x = abs(weaponcarriedA.position.x) * -1
-					weapontimer.start()
+						animationplayer.play("attackleft")
+					
+					#cooldown.start()
 				2:
 					print("Oh snap! It's a string!")
 					#weaponcarriedB.show()
@@ -211,3 +219,7 @@ func _on_DashDurationTimer_timeout():
 
 func _on_DashCooldown_timeout():
 	dashoncooldown = false
+
+func end_attack():
+	weaponcarriedA.get_node("Hitbox/CollisionShape2D").disabled = true
+	can_attack = true
