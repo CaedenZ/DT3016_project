@@ -36,8 +36,6 @@ scale = Vector2( 2.22025, 2.23351 )
 texture = ExtResource( 8 )
 
 [node name="Particles2D" parent="." instance=ExtResource( 15 )]
-position = Vector2( 322.988, 183.646 )
-scale = Vector2( 1.03593, 0.774355 )
 amount = 360
 
 [node name="TileMap" type="TileMap" parent="."]

@@ -28,18 +28,17 @@ var attack := false
 var count := 3
 var gothit := false
 var knockback_dir := 1
+var knockbackevent := false
 
-onready var actiontimer = $ActionTimer
-onready var weapontimer = $WeaponTimer
 onready var dashtimer = $DashInputTimer
 onready var dashdurationtimer = $DashDurationTimer
 onready var dashcooldown = $DashCooldown
+onready var knockbackeventtimer = $Knockbackevent
 onready var statelabel = $StateLabel
 onready var itemlabel = $ItemLabel
 onready var lifelabel = $LifeLabel
 onready var weaponcarriedA = $WeaponA
 onready var weaponcarriedB = $WeaponB
-onready var cooldown = $Cooldown
 onready var raycast = $RayCast2D
 onready var animationplayer = $AnimationPlayer
 onready var sprite = $Sprite
@@ -132,11 +131,14 @@ func _physics_process(delta):
 #			jump_power = MAX_JUMP_POWER
 #		print("jump_power:" + str(jump_power))
 		
-	if knockback:	
-		velocity.x = knockback_dir * DASHSPEED
-	elif(abs(velocity.x - direction * speed) > 50):
-		velocity.x += (direction * speed - velocity.x) /2
-		print(velocity.x)
+	if knockbackevent:
+		if knockback:	
+			velocity.x = knockback_dir * DASHSPEED
+		elif(abs(velocity.x - direction * speed) > 50):
+			velocity.x += (direction * speed - velocity.x) /20
+			print(velocity.x)
+		else:
+			velocity.x = direction * speed
 	else:
 		velocity.x = direction * speed
 		
@@ -161,11 +163,6 @@ func _physics_process(delta):
 		position.y=0
 
 
-func _on_ActionTimer_timeout():
-	if wantstojump:
-		chargingjump = true
-		jump_power = -200
-		statelabel.text = "charging jump"
 
 func pickup():
 	weaponNumber = randi() % 3
@@ -198,10 +195,6 @@ func attack():
 
 
 	
-func _on_WeaponTimer_timeout():
-	weaponcarriedA.hide()
-	weaponcarriedA.get_node("Hitbox/CollisionShape2D").disabled = true
-	cooldown.start()
 
 
 func _on_Hurtbox_area_entered(area):
@@ -213,6 +206,8 @@ func _on_Hurtbox_area_entered(area):
 	velocity.x = DASHSPEED * knockback_dir
 	knockback = true
 	dashdurationtimer.start()
+	knockbackevent = true
+	knockbackeventtimer.start()
 	take_damage(1)
 
 func take_damage(damage):
@@ -225,10 +220,6 @@ func take_damage(damage):
 		life = 5
 		position.x = 100
 		position.y = 200
-
-func _on_Cooldown_timeout():
-	can_attack = true
-	pass # Replace with function body.
 
 
 func _on_DashTimer_timeout():
@@ -250,3 +241,8 @@ func _on_DashCooldown_timeout():
 func end_attack():
 	weaponcarriedA.get_node("Hitbox/CollisionShape2D").disabled = true
 	can_attack = true
+
+
+func _on_Knockbackevent_timeout():
+	knockbackevent = false
+	pass # Replace with function body.
