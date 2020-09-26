@@ -4,7 +4,7 @@
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://Items/WeaponA.tscn" type="PackedScene" id=3]
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=1]
 resource_name = "fall"
 length = 0.1
 tracks/0/type = "value"
@@ -20,11 +20,10 @@ tracks/0/keys = {
 "values": [ 24 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=2]
 resource_name = "hit"
 
-[sub_resource type="Animation" id=1]
-resource_name = "idle"
+[sub_resource type="Animation" id=3]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -39,7 +38,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=4]
 resource_name = "jump"
 length = 0.1
 tracks/0/type = "value"
@@ -55,8 +54,7 @@ tracks/0/keys = {
 "values": [ 23 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "run"
+[sub_resource type="Animation" id=5]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -72,13 +70,13 @@ tracks/0/keys = {
 "values": [ 10, 11, 12, 14, 10, 17, 18, 20 ]
 }
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 16, 16 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 16, 16 )
 
-[sub_resource type="CircleShape2D" id=5]
+[sub_resource type="CircleShape2D" id=8]
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
@@ -88,17 +86,18 @@ script = ExtResource( 2 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 32
+frame = 24
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/fall = SubResource( 7 )
-anims/hit = SubResource( 8 )
-anims/idle = SubResource( 1 )
-anims/jump = SubResource( 6 )
-anims/run = SubResource( 2 )
+anims/fall = SubResource( 1 )
+anims/hit = SubResource( 2 )
+anims/idle = SubResource( 3 )
+anims/jump = SubResource( 4 )
+anims/run = SubResource( 5 )
 
 [node name="Playerbox" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 3 )
+shape = SubResource( 6 )
 
 [node name="Hurtbox" type="Area2D" parent="."]
 visible = false
@@ -106,7 +105,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-shape = SubResource( 4 )
+shape = SubResource( 7 )
 
 [node name="DashInputTimer" type="Timer" parent="."]
 process_mode = 0
@@ -184,7 +183,7 @@ visible = false
 [node name="Hitbox_ranged" type="Area2D" parent="WeaponB"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponB/Hitbox_ranged"]
-shape = SubResource( 5 )
+shape = SubResource( 8 )
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="timeout" from="DashInputTimer" to="." method="_on_DashTimer_timeout"]
 [connection signal="timeout" from="DashDurationTimer" to="." method="_on_DashDurationTimer_timeout"]

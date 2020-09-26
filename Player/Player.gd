@@ -152,6 +152,7 @@ func _on_ActionTimer_timeout():
 
 func pickup():
 	weaponNumber = randi() % 3
+	print(weaponNumber)
 	itemlabel.text = str(weaponNumber)
 
 func attack():
