@@ -21,10 +21,13 @@ var stomped_on := false
 var wantstodash := false
 var previousdirection := 0
 var dashing := false
+var knockback := false
 var dashoncooldown := false
 var weaponNumber := 1
 var attack := false
 var count := 3
+var gothit := false
+var knockback_dir := 1
 
 onready var actiontimer = $ActionTimer
 onready var weapontimer = $WeaponTimer
@@ -42,6 +45,7 @@ onready var animationplayer = $AnimationPlayer
 onready var sprite = $Sprite
 
 func _ready():
+	randomize()
 	statelabel.text = "running"
 	animationplayer.play("run")
 	sprite.flip_h = true
@@ -128,7 +132,14 @@ func _physics_process(delta):
 #			jump_power = MAX_JUMP_POWER
 #		print("jump_power:" + str(jump_power))
 		
-	velocity.x = direction * speed
+	if knockback:	
+		velocity.x = knockback_dir * DASHSPEED
+	elif(abs(velocity.x - direction * speed) > 50):
+		velocity.x += (direction * speed - velocity.x) /2
+		print(velocity.x)
+	else:
+		velocity.x = direction * speed
+		
 	velocity = move_and_slide(velocity, FLOOR_NORMAL, false, 3)
 	velocity.y += GRAVITY
 	#move_and_collide(velocity*delta)
@@ -194,6 +205,14 @@ func _on_WeaponTimer_timeout():
 
 
 func _on_Hurtbox_area_entered(area):
+	if global_position.x > area.global_position.x:
+		knockback_dir = 1
+	else:
+		knockback_dir = -1
+	velocity.y = -300
+	velocity.x = DASHSPEED * knockback_dir
+	knockback = true
+	dashdurationtimer.start()
 	take_damage(1)
 
 func take_damage(damage):
@@ -220,6 +239,7 @@ func _on_DashDurationTimer_timeout():
 	speed = MAXSPEED
 	dashing = false
 	dashoncooldown = true
+	knockback = false
 	dashcooldown.start()
 	
 

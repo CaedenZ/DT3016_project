@@ -46,7 +46,6 @@ texture = ExtResource( 12 )
 
 [node name="Rock2" type="Sprite" parent="Rock"]
 position = Vector2( -71.1579, -142.56 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 12 )
 
 [node name="Bush" type="Sprite" parent="."]
@@ -86,32 +85,26 @@ texture = ExtResource( 14 )
 
 [node name="Plant5" type="Sprite" parent="Plant1"]
 position = Vector2( 383.194, 68.2393 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 14 )
 
 [node name="Plant6" type="Sprite" parent="Plant1"]
 position = Vector2( 224.309, -28.6803 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 14 )
 
 [node name="Plant2" type="Sprite" parent="Plant1"]
 position = Vector2( 47.1983, 68.2393 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 14 )
 
 [node name="Plant3" type="Sprite" parent="Plant1"]
 position = Vector2( 34.1136, 67.2504 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 14 )
 
 [node name="Plant4" type="Sprite" parent="Plant1"]
 position = Vector2( 19.627, 73.1842 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 14 )
 
 [node name="Plant7" type="Sprite" parent="Plant1"]
 position = Vector2( 333.192, -89.5023 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 14 )
 
 [node name="Fruit" type="Sprite" parent="."]
@@ -121,32 +114,26 @@ texture = ExtResource( 13 )
 
 [node name="Background5" type="Sprite" parent="Fruit"]
 position = Vector2( 67.8056, -24.0145 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 13 )
 
 [node name="Background6" type="Sprite" parent="Fruit"]
 position = Vector2( 207.302, 57.9173 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 13 )
 
 [node name="Background7" type="Sprite" parent="Fruit"]
 position = Vector2( 32.8434, 59.6831 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 13 )
 
 [node name="Background8" type="Sprite" parent="Fruit"]
 position = Vector2( -60.7425, 85.4633 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 13 )
 
 [node name="Background9" type="Sprite" parent="Fruit"]
 position = Vector2( -1.94621, 149.719 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 13 )
 
 [node name="Background10" type="Sprite" parent="Fruit"]
 position = Vector2( 217.7, 148.879 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 13 )
 
 [node name="Stars" type="Sprite" parent="."]
