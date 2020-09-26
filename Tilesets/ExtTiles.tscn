@@ -1,9 +1,9 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/ExtTiles/ExtTile1.png" type="Texture" id=1]
-[ext_resource path="res://assets/ExtTiles/ExtTile8.png" type="Texture" id=2]
-[ext_resource path="res://assets/ExtTiles/ExtTile9.png" type="Texture" id=3]
-[ext_resource path="res://assets/ExtTiles/ExtTile7.png" type="Texture" id=4]
+[ext_resource path="res://Materials/stringstar fields/floor.png" type="Texture" id=2]
+[ext_resource path="res://assets/ExtTiles/smallfloor.png" type="Texture" id=3]
+[ext_resource path="res://assets/ExtTiles/platform.png" type="Texture" id=4]
 [ext_resource path="res://assets/ExtTiles/ExtTile6.png" type="Texture" id=5]
 [ext_resource path="res://assets/ExtTiles/ExtTile3.png" type="Texture" id=6]
 [ext_resource path="res://assets/ExtTiles/ExtTile4.png" type="Texture" id=7]
@@ -20,10 +20,13 @@ extents = Vector2( 4, 12 )
 extents = Vector2( 4, 12 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 4, 12 )
+extents = Vector2( 143.277, 10 )
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 4, 12 )
+extents = Vector2( 23.3345, 10 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 39.819, 10 )
 
 [node name="ExtTiles" type="Node2D"]
 
@@ -103,43 +106,38 @@ position = Vector2( 12, 0 )
 rotation = 1.5708
 shape = SubResource( 1 )
 
-[node name="ExtTile7" type="Sprite" parent="."]
-position = Vector2( 16, 144 )
-texture = ExtResource( 4 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="ExtTile7"]
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExtTile7/StaticBody2D"]
-position = Vector2( 0, 12 )
-shape = SubResource( 1 )
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="ExtTile7/StaticBody2D"]
-position = Vector2( -12, -4 )
-shape = SubResource( 4 )
-
-[node name="ExtTile8" type="Sprite" parent="."]
-position = Vector2( 80, 144 )
+[node name="Floor" type="Sprite" parent="."]
+position = Vector2( 49.0868, 99.8215 )
+scale = Vector2( 1.06602, 0.933275 )
 texture = ExtResource( 2 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="ExtTile8"]
-collision_mask = 0
+[node name="StaticBody2D" type="StaticBody2D" parent="Floor"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExtTile8/StaticBody2D"]
-position = Vector2( 0, 12 )
-shape = SubResource( 1 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/StaticBody2D"]
+position = Vector2( -8.0198e-05, 68.0138 )
+scale = Vector2( 1, 0.8 )
+shape = SubResource( 4 )
 
-[node name="ExtTile9" type="Sprite" parent="."]
-position = Vector2( 144, 144 )
+[node name="Floor2" type="Sprite" parent="."]
+position = Vector2( 131.847, 228.634 )
+scale = Vector2( 1.06602, 0.933275 )
 texture = ExtResource( 3 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="ExtTile9"]
-collision_mask = 0
+[node name="StaticBody2D" type="StaticBody2D" parent="Floor2"]
+position = Vector2( 112.695, 36.472 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExtTile9/StaticBody2D"]
-position = Vector2( 0, 12 )
-shape = SubResource( 1 )
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="ExtTile9/StaticBody2D"]
-position = Vector2( 12, -4 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor2/StaticBody2D"]
+position = Vector2( -111.13, -36.8296 )
+scale = Vector2( 1, 0.9 )
 shape = SubResource( 5 )
+
+[node name="Platform" type="Sprite" parent="."]
+position = Vector2( 10.5947, -64.0975 )
+texture = ExtResource( 4 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Platform"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform/StaticBody2D"]
+position = Vector2( -1.58923, -1.05948 )
+scale = Vector2( 1, 0.3 )
+shape = SubResource( 6 )
