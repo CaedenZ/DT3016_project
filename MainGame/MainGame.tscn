@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Tilesets/NewMap.tres" type="TileSet" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -21,6 +21,14 @@
 [ext_resource path="res://UI/ninja_frog.png" type="Texture" id=19]
 [ext_resource path="res://UI/pink_man.png" type="Texture" id=20]
 
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 1
+light_mode = 2
+
+[sub_resource type="CanvasItemMaterial" id=2]
+blend_mode = 1
+light_mode = 2
+
 [node name="MainGame" type="Node2D"]
 position = Vector2( 0.971313, -2.67352 )
 script = ExtResource( 4 )
@@ -36,6 +44,7 @@ scale = Vector2( 3.47547, 3.6127 )
 texture = ExtResource( 7 )
 
 [node name="Background3" type="Sprite" parent="."]
+modulate = Color( 0.0862745, 0.141176, 0.501961, 1 )
 position = Vector2( 501.427, 279.743 )
 scale = Vector2( 3.4853, 3.68603 )
 texture = ExtResource( 8 )
@@ -48,7 +57,7 @@ amount = 360
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( 0, 0, 0, 1, 1, 0, 2, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 1, 0, 15, 1, 0, 16, 1, 0, 17, 1, 0, 22, 1, 0, 23, 1, 0, 24, 1, 0, 28, 1, 0, 29, 1, 0, 30, 1, 0, 31, 2, 0, 131078, 6, 0, 196611, 8, 0, 196624, 7, 0, 196625, 7, 0, 196626, 7, 0, 196627, 7, 0, 196635, 8, 0, 196637, 6, 0, 262167, 8, 0, 524287, 7, 0, 458752, 7, 0, 458753, 7, 0, 458771, 8, 0, 458773, 8, 0, 589850, 8, 0, 655364, 7, 0, 655365, 7, 0, 655366, 7, 0, 655367, 7, 0, 655368, 7, 0, 655369, 7, 0, 655373, 8, 0, 655378, 7, 0, 655379, 7, 0, 851967, 8, 0, 786455, 7, 0, 786456, 7, 0, 786457, 7, 0, 786460, 7, 0, 851980, 1, 0, 851981, 1, 0, 851982, 1, 0, 851991, 6, 0, 917508, 8, 0, 917510, 8, 0, 917521, 8, 0, 983045, 0, 0, 983046, 2, 0, 1048581, 3, 0, 1048582, 5, 0, 1114112, 1, 0, 1114113, 1, 0, 1114114, 2, 0, 1114117, 3, 0, 1114118, 5, 0, 1114134, 0, 0, 1114135, 1, 0, 1114136, 1, 0, 1114137, 1, 0, 1114138, 1, 0, 1114139, 1, 0, 1114140, 1, 0, 1114141, 0, 0, 1114142, 1, 0, 1114143, 1, 0, 1179648, 1, 0, 1179649, 1, 0, 1179650, 2, 0, 1179653, 3, 0, 1179654, 5, 0, 1179657, 1, 0, 1179658, 1, 0, 1179659, 1, 0, 1179662, 1, 0, 1179663, 1, 0, 1179664, 1, 0, 1179665, 1, 0, 1179669, 0, 0, 1179670, 1, 0, 1179671, 1, 0, 1179672, 1, 0, 1179673, 1, 0, 1179674, 0, 0, 1179675, 1, 0, 1179676, 1, 0, 1179677, 1, 0, 1179678, 1, 0, 1179679, 1, 0 )
+tile_data = PoolIntArray( 0, 0, 0, 1, 1, 0, 2, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 1, 0, 15, 1, 0, 16, 1, 0, 17, 1, 0, 22, 1, 0, 23, 1, 0, 24, 1, 0, 28, 1, 0, 29, 1, 0, 30, 1, 0, 31, 2, 0, 131078, 6, 0, 196611, 8, 0, 196624, 7, 0, 196625, 7, 0, 196626, 7, 0, 196627, 7, 0, 196635, 8, 0, 262167, 8, 0, 524287, 7, 0, 458752, 7, 0, 458753, 7, 0, 458771, 8, 0, 458773, 8, 0, 589850, 8, 0, 655364, 7, 0, 655365, 7, 0, 655366, 7, 0, 655367, 7, 0, 655368, 7, 0, 655369, 7, 0, 655373, 8, 0, 655378, 7, 0, 655379, 7, 0, 655388, 6, 0, 851967, 8, 0, 786455, 7, 0, 786456, 7, 0, 786457, 7, 0, 917498, 6, 0, 851980, 7, 0, 851981, 7, 0, 851982, 7, 0, 917508, 8, 0, 917510, 8, 0, 917521, 8, 0, 983044, 6, 0, 1048581, 0, 0, 1048582, 2, 0, 1114112, 1, 0, 1114113, 1, 0, 1114114, 2, 0, 1114117, 3, 0, 1114118, 5, 0, 1179648, 1, 0, 1179649, 1, 0, 1179650, 2, 0, 1179653, 3, 0, 1179654, 5, 0, 1179657, 0, 0, 1179658, 1, 0, 1179659, 2, 0, 1179662, 0, 0, 1179663, 1, 0, 1179664, 1, 0, 1179665, 2, 0, 1179669, 7, 0, 1179670, 7, 0, 1179671, 7, 0, 1179672, 7, 0, 1179673, 7, 0, 1179674, 7, 0, 1179675, 7, 0, 1179676, 7, 0, 1179677, 7, 0, 1179678, 7, 0, 1179679, 7, 0 )
 
 [node name="Rock" type="Sprite" parent="."]
 position = Vector2( 261.805, 323.283 )
@@ -66,8 +75,8 @@ scale = Vector2( 1.57204, 1.61667 )
 texture = ExtResource( 12 )
 
 [node name="Rock5" type="Sprite" parent="Rock"]
-position = Vector2( 316.145, 157.592 )
-scale = Vector2( 1.24442, 1.5034 )
+position = Vector2( 335.978, 168.259 )
+scale = Vector2( 1.6053, 1.93007 )
 texture = ExtResource( 12 )
 
 [node name="Bush" type="Sprite" parent="."]
@@ -96,27 +105,31 @@ scale = Vector2( 0.93418, 0.775354 )
 texture = ExtResource( 11 )
 
 [node name="Plant8" type="Sprite" parent="Bush"]
-position = Vector2( 554.165, -75.0469 )
-scale = Vector2( 0.93418, 0.775354 )
+position = Vector2( 549.284, 82.4277 )
+scale = Vector2( 1.08776, 1.22464 )
 texture = ExtResource( 11 )
 
 [node name="Plant9" type="Sprite" parent="Bush"]
-position = Vector2( 425.751, 172.848 )
-scale = Vector2( 0.93418, 0.775354 )
+position = Vector2( 443.712, 182.835 )
+scale = Vector2( 1.26496, 1.17985 )
 texture = ExtResource( 11 )
 
 [node name="Plant10" type="Sprite" parent="Bush"]
-position = Vector2( 482.451, 168.418 )
-scale = Vector2( 1.95922, 1.23878 )
+modulate = Color( 0.760784, 1, 0.0980392, 1 )
+material = SubResource( 1 )
+position = Vector2( 525.953, 173.354 )
+scale = Vector2( 1.95922, 1.85973 )
 texture = ExtResource( 11 )
 
 [node name="Plant11" type="Sprite" parent="Bush"]
-position = Vector2( 229.236, 169.781 )
-scale = Vector2( 1.95922, 1.23878 )
+modulate = Color( 0.862745, 1, 0.0784314, 1 )
+material = SubResource( 2 )
+position = Vector2( 236.639, 169.058 )
+scale = Vector2( 1.45703, 1.23878 )
 texture = ExtResource( 11 )
 
 [node name="Plant12" type="Sprite" parent="Bush"]
-position = Vector2( 395.147, 175.233 )
+position = Vector2( 359.65, 188.591 )
 scale = Vector2( 0.568093, 0.639052 )
 texture = ExtResource( 11 )
 
@@ -236,7 +249,7 @@ texture = ExtResource( 10 )
 offset = Vector2( -26.5, -39.3501 )
 
 [node name="Background9" type="Sprite" parent="Stars"]
-position = Vector2( 1002.7, 317.648 )
+position = Vector2( 870.471, 486.647 )
 rotation = 1.74845e-07
 scale = Vector2( 1.28073, 1.19442 )
 texture = ExtResource( 10 )
@@ -250,14 +263,14 @@ texture = ExtResource( 10 )
 offset = Vector2( -26.5, -39.3501 )
 
 [node name="Background11" type="Sprite" parent="Stars"]
-position = Vector2( 454.249, 511.311 )
+position = Vector2( 464.632, 506.12 )
 rotation = 1.74845e-07
 scale = Vector2( 1.28073, 1.19442 )
 texture = ExtResource( 10 )
 offset = Vector2( -26.5, -39.3501 )
 
 [node name="Background12" type="Sprite" parent="Stars"]
-position = Vector2( 489.966, 493.056 )
+position = Vector2( 510.731, 512.877 )
 rotation = 1.74845e-07
 scale = Vector2( 1.28073, 1.19442 )
 texture = ExtResource( 10 )

@@ -6,7 +6,7 @@ const DASHSPEED = 600
 const FLOOR_NORMAL = Vector2(0, -1)
 const GRAVITY = 20
 const MAX_JUMP_POWER = -600
-const JUMP_POWER = -400
+const JUMP_POWER = -600
 
 var speed := MAXSPEED
 var direction := -1
@@ -45,6 +45,7 @@ onready var weaponcarriedB = $WeaponB
 onready var raycast = $RayCast2D
 onready var animationplayer = $AnimationPlayer
 onready var sprite = $Sprite
+var jumpPart = preload("res://Particles/Jump.tscn")
 
 signal update_life_ui(playerid)
 
@@ -98,6 +99,8 @@ func _physics_process(delta):
 	#else:
 		#direction = 0
 	if Input.is_action_just_pressed("Jump_A"):
+		var new_particles = jumpPart.instance()
+		new_particles.emitting = true
 		if is_on_floor():
 			velocity.y = JUMP_POWER
 			candoublejump = true
@@ -108,13 +111,19 @@ func _physics_process(delta):
 			candoublejump = false
 			if can_attack and !gothit:
 				animationplayer.play("jump")
-				
+				new_particles.position = position
+				var currentscene = get_tree().current_scene
+				currentscene.add_child(new_particles)
 	if Input.is_action_just_released("Jump_A"):
+		var new_particles = jumpPart.instance()
 		if !is_on_floor():
 			if can_attack and !gothit:
 				animationplayer.play("fall")
 			if velocity.y < 0:
 				velocity.y *= 0.5
+				new_particles.position = position
+				var currentscene = get_tree().current_scene
+				currentscene.add_child(new_particles)
 	if Input.is_action_just_pressed("Action_A"):
 		attack()
 #	if Input.is_action_just_pressed("ActionA"):
