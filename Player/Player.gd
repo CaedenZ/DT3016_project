@@ -23,13 +23,14 @@ var previousdirection := 0
 var dashing := false
 var knockback := false
 var dashoncooldown := false
-var weaponNumber := 1
+var weaponNumber := 2
 var attack := false
 var count := 3
 var gothit := false
 var knockback_dir := 1
 var knockbackevent := false
 
+signal rangeAttack(playerid)
 
 onready var dashtimer = $DashInputTimer
 onready var dashdurationtimer = $DashDurationTimer
@@ -54,8 +55,6 @@ func _ready():
 	lifelabel.text = str(life)
 	weaponcarriedA.get_node("Hitbox/CollisionShape2D").disabled = true
 	weaponcarriedA.connect("playerhit", self, "player_hit")
-	weaponcarriedB.get_node("Hitbox_ranged/CollisionShape2D").disabled = true
-	weaponcarriedB.connect("playerhit", self, "player_hit")
 	itemlabel.text = str(weaponNumber)
 func _physics_process(delta):
 	if raycast.is_colliding() and !stomped_on:
@@ -173,12 +172,17 @@ func pickup():
 	itemlabel.text = str(weaponNumber)
 	if weaponNumber == 1:
 		weaponcarriedA.show()
+		weaponcarriedB.hide()
+	elif weaponNumber == 2:
+		weaponcarriedB.show()
+		weaponcarriedA.hide()
 
 func attack():
 	if can_attack:
 		match weaponNumber:
 				0:
 					print("We are number one!")
+					emit_signal("rangeAttack", name)
 				1:
 					print("Two are better than one!")
 					can_attack = false
@@ -192,9 +196,7 @@ func attack():
 					#cooldown.start()
 				2:
 					print("Oh snap! It's a string!")
-					#weaponcarriedB.show()
-					#weaponcarriedB.get_node("Hitbox/CollisionShape2D").disabled = false
-					#TODO: range weapon
+					emit_signal("rangeAttack", name)
 
 
 

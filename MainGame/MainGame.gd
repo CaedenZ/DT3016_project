@@ -12,7 +12,10 @@ onready var p3_lives = $Lives/P3_lives
 onready var p4_lives = $Lives/P4_lives
 onready var itembox = $ItemBox
 
+onready var bulletIns = preload("res://Items/Bullet.tscn")
+
 func _ready():
+	player.connect("rangeAttack", self, "generateBullet")
 	itembox.connect("playertouch", self, "updateplayer")
 	player.connect("update_life_ui", self, "updateplayerhealth")
 	player2.connect("update_life_ui", self, "updateplayerhealth")
@@ -59,6 +62,32 @@ func updateplayer(playerid):
 			player.pickup()
 		"Player2":
 			print("Player 2 received")
+
+func generateBullet(playerid):
+	print(playerid)
+	match playerid:
+		"Player":
+			print("Player 1 received")
+			bulletShoot(playerid,player.global_position,player.direction)
+		"Player2":
+			print("Player 2 received")
+			player2.pickup()
+		"Player3":
+			print("Player 3 received")
+		"Player4":
+			print("Player 4 received")
+
+func bulletShoot(playerid,position,direction):
+	var bullet = bulletIns.instance()
+	var animationPlayer = bullet.get_child(0)
+	var currentscene = get_tree().current_scene
+	currentscene.add_child(bullet)
+	match playerid:
+		"Player":
+			bullet.get_child(0).set_collision_mask_bit(4,false)
+	bullet.position = position
+	bullet.linear_velocity = Vector2(direction * 600, -100)
+	
 
 func _on_GameTimer_timeout():
 	print("Time 20s")
