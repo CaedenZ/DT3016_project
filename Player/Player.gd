@@ -44,6 +44,8 @@ onready var raycast = $RayCast2D
 onready var animationplayer = $AnimationPlayer
 onready var sprite = $Sprite
 
+signal update_life_ui(playerid)
+
 func _ready():
 	randomize()
 	statelabel.text = "running"
@@ -218,15 +220,16 @@ func refresh_hit_state():
 	gothit = false
 	
 func take_damage(damage):
-	life -= damage
-	lifelabel.text = str(life)
-	if life <= 0:
-		count -= 1
-		if count <= 0:
-			queue_free()
-		life = 5
-		position.x = 100
-		position.y = 200
+#	life -= damage
+#	lifelabel.text = str(life)
+	emit_signal("update_life_ui", name)
+#	if life <= 0:
+#		count -= 1
+#		if count <= 0:
+#			queue_free()
+#		life = 5
+#		position.x = 100
+#		position.y = 200
 
 
 func _on_DashTimer_timeout():
