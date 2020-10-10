@@ -32,6 +32,7 @@ var knockbackevent := false
 var durability := 0
 var candoublejump := false
 signal rangeAttack(playerid)
+var jumpPart = preload("res://Particles/Jump.tscn")
 
 onready var dashtimer = $DashInputTimer
 onready var dashdurationtimer = $DashDurationTimer
@@ -45,6 +46,7 @@ onready var weaponcarriedB = $WeaponB
 onready var raycast = $RayCast2D
 onready var animationplayer = $AnimationPlayer
 onready var sprite = $Sprite
+onready var jumpSound = $Jump
 
 signal update_life_ui(playerid)
 
@@ -98,16 +100,26 @@ func _physics_process(delta):
 	#else:
 		#direction = 0
 	if Input.is_action_just_pressed("Jump_B"):
+		var new_particles = jumpPart.instance()
+		new_particles.emitting = true
 		if is_on_floor():
 			velocity.y = JUMP_POWER
 			candoublejump = true
 			if can_attack and !gothit:
 				animationplayer.play("jump")
+				jumpSound.play()
+				new_particles.position = position
+				var currentscene = get_tree().current_scene
+				currentscene.add_child(new_particles)
 		elif candoublejump:
 			velocity.y = JUMP_POWER
 			candoublejump = false
 			if can_attack and !gothit:
 				animationplayer.play("jump")
+				jumpSound.play()
+				new_particles.position = position
+				var currentscene = get_tree().current_scene
+				currentscene.add_child(new_particles)
 				
 	if Input.is_action_just_released("Jump_B"):
 		if !is_on_floor():

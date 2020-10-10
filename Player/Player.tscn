@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Materials/Free/Main Characters/Mask Dude/spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://Items/WeaponA.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Materials/Jump 1.wav" type="AudioStream" id=4]
 [ext_resource path="res://Items/WeaponB.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Animation" id=1]
@@ -429,6 +430,9 @@ visible = false
 
 [node name="Bullet" parent="WeaponB" index="0"]
 visible = false
+
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="timeout" from="DashInputTimer" to="." method="_on_DashTimer_timeout"]
 [connection signal="timeout" from="DashDurationTimer" to="." method="_on_DashDurationTimer_timeout"]

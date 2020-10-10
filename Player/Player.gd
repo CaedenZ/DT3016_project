@@ -6,7 +6,7 @@ const DASHSPEED = 600
 const FLOOR_NORMAL = Vector2(0, -1)
 const GRAVITY = 20
 const MAX_JUMP_POWER = -600
-const JUMP_POWER = -600
+const JUMP_POWER = -400
 
 var speed := MAXSPEED
 var direction := -1
@@ -46,6 +46,7 @@ onready var raycast = $RayCast2D
 onready var animationplayer = $AnimationPlayer
 onready var sprite = $Sprite
 var jumpPart = preload("res://Particles/Jump.tscn")
+onready var jumpSound = $Jump
 
 signal update_life_ui(playerid)
 
@@ -106,11 +107,16 @@ func _physics_process(delta):
 			candoublejump = true
 			if can_attack and !gothit:
 				animationplayer.play("jump")
+				jumpSound.play()
+				new_particles.position = position
+				var currentscene = get_tree().current_scene
+				currentscene.add_child(new_particles)
 		elif candoublejump:
 			velocity.y = JUMP_POWER
 			candoublejump = false
 			if can_attack and !gothit:
 				animationplayer.play("jump")
+				jumpSound.play()
 				new_particles.position = position
 				var currentscene = get_tree().current_scene
 				currentscene.add_child(new_particles)

@@ -36,7 +36,7 @@ lifetime_randomness = 0.66
 trail_divisor = 2
 trail_size_modifier = SubResource( 7 )
 emission_shape = 2
-emission_box_extents = Vector3( 320, 250, 1 )
+emission_box_extents = Vector3( 500, 300, 1 )
 flag_disable_z = true
 spread = 105.24
 flatness = 0.02
@@ -58,7 +58,6 @@ anim_speed_random = 0.05
 
 [node name="Particles2D" type="Particles2D"]
 material = SubResource( 1 )
-position = Vector2( 322.988, 183.646 )
 rotation = -0.00391358
 scale = Vector2( 1.03593, 0.774355 )
 amount = 280
@@ -67,7 +66,7 @@ preprocess = 11.95
 speed_scale = 0.67
 explosiveness = 0.03
 randomness = 0.4
-visibility_rect = Rect2( -320, -180, 640, 400 )
+visibility_rect = Rect2( 0, 0, 1000, 600 )
 draw_order = 1
 process_material = SubResource( 8 )
 texture = ExtResource( 1 )

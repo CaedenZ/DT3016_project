@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Tilesets/NewMap.tres" type="TileSet" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://UI/virtual_guy.png" type="Texture" id=18]
 [ext_resource path="res://UI/ninja_frog.png" type="Texture" id=19]
 [ext_resource path="res://UI/pink_man.png" type="Texture" id=20]
+[ext_resource path="res://Materials/Iceland Theme.wav" type="AudioStream" id=21]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
@@ -50,14 +51,16 @@ scale = Vector2( 3.4853, 3.68603 )
 texture = ExtResource( 8 )
 
 [node name="Particles2D" parent="." instance=ExtResource( 15 )]
-visible = false
-amount = 360
+position = Vector2( 500, 300 )
+scale = Vector2( 1, 1 )
+amount = 800
+visibility_rect = Rect2( -500, -400, 1000, 800 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( 0, 0, 0, 1, 1, 0, 2, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 1, 0, 15, 1, 0, 16, 1, 0, 17, 1, 0, 22, 1, 0, 23, 1, 0, 24, 1, 0, 28, 1, 0, 29, 1, 0, 30, 1, 0, 31, 2, 0, 131078, 6, 0, 196611, 8, 0, 196624, 7, 0, 196625, 7, 0, 196626, 7, 0, 196627, 7, 0, 196635, 8, 0, 262167, 8, 0, 524287, 7, 0, 458752, 7, 0, 458753, 7, 0, 458771, 8, 0, 458773, 8, 0, 589850, 8, 0, 655364, 7, 0, 655365, 7, 0, 655366, 7, 0, 655367, 7, 0, 655368, 7, 0, 655369, 7, 0, 655373, 8, 0, 655378, 7, 0, 655379, 7, 0, 655388, 6, 0, 851967, 8, 0, 786455, 7, 0, 786456, 7, 0, 786457, 7, 0, 917498, 6, 0, 851980, 7, 0, 851981, 7, 0, 851982, 7, 0, 917508, 8, 0, 917510, 8, 0, 917521, 8, 0, 983044, 6, 0, 1048581, 0, 0, 1048582, 2, 0, 1114112, 1, 0, 1114113, 1, 0, 1114114, 2, 0, 1114117, 3, 0, 1114118, 5, 0, 1179648, 1, 0, 1179649, 1, 0, 1179650, 2, 0, 1179653, 3, 0, 1179654, 5, 0, 1179657, 0, 0, 1179658, 1, 0, 1179659, 2, 0, 1179662, 0, 0, 1179663, 1, 0, 1179664, 1, 0, 1179665, 2, 0, 1179669, 7, 0, 1179670, 7, 0, 1179671, 7, 0, 1179672, 7, 0, 1179673, 7, 0, 1179674, 7, 0, 1179675, 7, 0, 1179676, 7, 0, 1179677, 7, 0, 1179678, 7, 0, 1179679, 7, 0 )
+tile_data = PoolIntArray( 131078, 6, 0, 196611, 8, 0, 196624, 7, 0, 196625, 7, 0, 196626, 7, 0, 196627, 7, 0, 196635, 8, 0, 262167, 8, 0, 524287, 7, 0, 458752, 7, 0, 458753, 7, 0, 458771, 8, 0, 458773, 8, 0, 589850, 8, 0, 655364, 7, 0, 655365, 7, 0, 655366, 7, 0, 655367, 7, 0, 655368, 7, 0, 655369, 7, 0, 655373, 8, 0, 655378, 7, 0, 655379, 7, 0, 655388, 6, 0, 851967, 8, 0, 786455, 7, 0, 786456, 7, 0, 786457, 7, 0, 917498, 6, 0, 851980, 7, 0, 851981, 7, 0, 851982, 7, 0, 917508, 8, 0, 917510, 8, 0, 917521, 8, 0, 1048581, 0, 0, 1048582, 2, 0, 1114112, 1, 0, 1114113, 1, 0, 1114114, 2, 0, 1114117, 3, 0, 1114118, 5, 0, 1114141, 0, 0, 1114142, 1, 0, 1114143, 1, 0, 1179648, 1, 0, 1179649, 1, 0, 1179650, 2, 0, 1179653, 3, 0, 1179654, 5, 0, 1179657, 0, 0, 1179658, 1, 0, 1179659, 2, 0, 1179662, 0, 0, 1179663, 1, 0, 1179664, 1, 0, 1179665, 2, 0, 1179669, 7, 0, 1179670, 7, 0, 1179671, 7, 0, 1179672, 7, 0, 1179673, 7, 0, 1179674, 7, 0, 1179675, 7, 0, 1179676, 0, 0, 1179677, 1, 0, 1179678, 1, 0, 1179679, 1, 0, 1179680, 1, 0 )
 
 [node name="Rock" type="Sprite" parent="."]
 position = Vector2( 261.805, 323.283 )
@@ -209,7 +212,7 @@ wait_time = 20.0
 autostart = true
 
 [node name="ItemBox" parent="." instance=ExtResource( 5 )]
-position = Vector2( 808, 216 )
+position = Vector2( 1161.73, 203.986 )
 scale = Vector2( 0.890625, 0.421875 )
 
 [node name="ItemTimer" type="Timer" parent="."]
@@ -284,14 +287,14 @@ texture = ExtResource( 10 )
 offset = Vector2( -26.5, -39.3501 )
 
 [node name="Background14" type="Sprite" parent="Stars"]
-position = Vector2( 980.473, 128.511 )
+position = Vector2( 997.667, 98.825 )
 rotation = 1.74846e-07
 scale = Vector2( 1.58024, 1.65232 )
 texture = ExtResource( 10 )
 offset = Vector2( -26.5, -39.3501 )
 
 [node name="Stars" type="Sprite" parent="Stars"]
-position = Vector2( 375.273, 98.0284 )
+position = Vector2( 341.902, 72.6664 )
 scale = Vector2( 1.28073, 1.19442 )
 texture = ExtResource( 10 )
 offset = Vector2( -26.5, -39.3501 )
@@ -329,6 +332,11 @@ position = Vector2( 264, -1 )
 
 [node name="Character" parent="Lives/P4_lives" index="0"]
 texture = ExtResource( 18 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 21 )
+volume_db = -20.715
+autoplay = true
 [connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]
 [connection signal="timeout" from="ItemTimer" to="." method="_on_ItemTimer_timeout"]
 
