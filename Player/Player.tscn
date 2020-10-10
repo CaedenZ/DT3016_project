@@ -83,10 +83,24 @@ tracks/5/keys = {
 "method": "end_attack"
 } ]
 }
+tracks/6/type = "method"
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "checkdurability"
+} ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "attackright"
-length = 0.4
+length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("WeaponA:rotation_degrees")
 tracks/0/interp = 1
@@ -94,7 +108,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4 ),
+"times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ -81.6016, -39.5015, 35.6863 ]
@@ -106,7 +120,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4 ),
+"times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( -24, -16 ), Vector2( 5.72205e-06, -16 ), Vector2( 16, 8 ) ]
@@ -154,11 +168,25 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.4 ),
+"times": PoolRealArray( 0.2 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "end_attack"
+} ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "checkdurability"
 } ]
 }
 
@@ -236,10 +264,10 @@ tracks/0/keys = {
 "values": [ 23 ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=7]
 resource_name = "rangeleft"
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=8]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -255,10 +283,10 @@ tracks/0/keys = {
 "values": [ 10, 11, 12, 14, 10, 17, 18, 20 ]
 }
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 16, 16 )
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 16, 16 )
 
 [node name="Player" type="KinematicBody2D"]
@@ -268,7 +296,6 @@ script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
-flip_h = true
 hframes = 32
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -278,19 +305,19 @@ anims/fall = SubResource( 3 )
 anims/hit = SubResource( 4 )
 anims/idle = SubResource( 5 )
 anims/jump = SubResource( 6 )
-anims/rangeleft = SubResource( 10 )
-anims/run = SubResource( 7 )
+anims/rangeleft = SubResource( 7 )
+anims/run = SubResource( 8 )
 
 [node name="Playerbox" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 8 )
+shape = SubResource( 9 )
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-shape = SubResource( 9 )
+shape = SubResource( 10 )
 
 [node name="DashInputTimer" type="Timer" parent="."]
 process_mode = 0
@@ -350,10 +377,11 @@ collide_with_bodies = false
 
 [node name="WeaponA" parent="." instance=ExtResource( 3 )]
 modulate = Color( 1, 1, 1, 1 )
-position = Vector2( 21, -12 )
-rotation = 1.5708
+position = Vector2( -24, -16 )
+rotation = -1.42422
 scale = Vector2( 3, 3 )
 texture = ExtResource( 4 )
+flip_h = true
 
 [node name="Hitbox" parent="WeaponA" index="0"]
 collision_mask = 224

@@ -29,7 +29,7 @@ var count := 3
 var gothit := false
 var knockback_dir := 1
 var knockbackevent := false
-
+var durability := 0
 signal rangeAttack(playerid)
 
 onready var dashtimer = $DashInputTimer
@@ -170,37 +170,48 @@ func pickup():
 	weaponNumber = randi() % 3
 	print(weaponNumber)
 	itemlabel.text = str(weaponNumber)
+	if weaponNumber == 0:
+		weaponcarriedA.hide()
+		weaponcarriedB.hide()
 	if weaponNumber == 1:
 		weaponcarriedA.show()
 		weaponcarriedB.hide()
+		durability = 10
 	elif weaponNumber == 2:
 		weaponcarriedB.show()
 		weaponcarriedA.hide()
+		durability = 5
 
 func attack():
 	if can_attack:
 		match weaponNumber:
 				0:
 					print("We are number one!")
-					emit_signal("rangeAttack", name)
+					
 				1:
 					print("Two are better than one!")
 					can_attack = false
 					weaponcarriedA.get_node("Hitbox/CollisionShape2D").disabled = false
 					if !gothit:
+						durability -= 1
 						if direction == 1:
 							animationplayer.play("attackright")
 						elif direction == -1:
 							animationplayer.play("attackleft")
+						
 					
 					#cooldown.start()
 				2:
 					print("Oh snap! It's a string!")
 					emit_signal("rangeAttack", name)
+					durability -= 1
+					checkdurability()
 
-
-
-	
+func checkdurability():
+	if durability <= 0:
+		weaponNumber = 0
+		weaponcarriedA.hide()
+		weaponcarriedB.hide()
 
 
 func _on_Hurtbox_area_entered(area):
