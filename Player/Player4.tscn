@@ -1,8 +1,8 @@
 [gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://Player/Player3.gd" type="Script" id=1]
+[ext_resource path="res://Player/Player4.gd" type="Script" id=1]
 [ext_resource path="res://Items/WeaponA.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Materials/Free/Main Characters/Pink Man/spritesheet.png" type="Texture" id=3]
+[ext_resource path="res://Materials/Free/Main Characters/Virtual Guy/spritesheet.png" type="Texture" id=3]
 [ext_resource path="res://assets/16x16 RPG Item Pack/Item__12.png" type="Texture" id=4]
 
 [sub_resource type="Animation" id=1]
@@ -188,7 +188,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 25, 27, 28, 29, 30, 31 ]
+"values": [ 26, 27, 28, 29, 30, 31 ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -259,8 +259,7 @@ extents = Vector2( 16, 16 )
 
 [sub_resource type="CircleShape2D" id=10]
 
-[node name="Player3" type="KinematicBody2D"]
-position = Vector2( 295.029, 306.674 )
+[node name="Player4" type="KinematicBody2D"]
 collision_layer = 2
 collision_mask = 7
 script = ExtResource( 1 )
@@ -284,7 +283,7 @@ visible = false
 shape = SubResource( 8 )
 
 [node name="Hurtbox" type="Area2D" parent="."]
-collision_layer = 64
+collision_layer = 128
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
@@ -355,7 +354,7 @@ texture = ExtResource( 4 )
 flip_h = true
 
 [node name="Hitbox" parent="WeaponA" index="0"]
-collision_mask = 176
+collision_mask = 112
 
 [node name="WeaponB" type="Sprite" parent="."]
 visible = false

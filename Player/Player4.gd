@@ -30,7 +30,6 @@ var gothit := false
 var knockback_dir := 1
 var knockbackevent := false
 
-
 onready var dashtimer = $DashInputTimer
 onready var dashdurationtimer = $DashDurationTimer
 onready var dashcooldown = $DashCooldown
@@ -87,7 +86,7 @@ func _physics_process(delta):
 #		speed = DASHSPEED
 
 
-	if Input.is_action_just_pressed("Left_A"):
+	if Input.is_action_just_pressed("Left_D"):
 		direction *= -1
 		sprite.flip_h = !sprite.flip_h
 #	elif Input.is_action_pressed("Left_A"):
@@ -95,18 +94,18 @@ func _physics_process(delta):
 #		sprite.flip_h = false
 	#else:
 		#direction = 0
-	if Input.is_action_just_pressed("Jump_A"):
+	if Input.is_action_just_pressed("Jump_D"):
 		if is_on_floor():
 			velocity.y = JUMP_POWER
-			if can_attack and !gothit:
+			if can_attack:
 				animationplayer.play("jump")
-	if Input.is_action_just_released("Jump_A"):
+	if Input.is_action_just_released("Jump_D"):
 		if !is_on_floor():
-			if can_attack and !gothit:
+			if can_attack:
 				animationplayer.play("fall")
 			if velocity.y < 0:
 				velocity.y *= 0.5
-	if Input.is_action_just_pressed("Action_A"):
+	if Input.is_action_just_pressed("Action_D"):
 		attack()
 #	if Input.is_action_just_pressed("ActionA"):
 #		wantstojump = true
@@ -147,7 +146,7 @@ func _physics_process(delta):
 	velocity.y += GRAVITY
 	#move_and_collide(velocity*delta)
 	if is_on_floor():
-		if can_attack and !gothit:
+		if can_attack:
 			animationplayer.play("run")
 		if direction == -1:
 			sprite.flip_h = true
@@ -181,11 +180,10 @@ func attack():
 					print("Two are better than one!")
 					can_attack = false
 					weaponcarriedA.get_node("Hitbox/CollisionShape2D").disabled = false
-					if !gothit:
-						if direction == 1:
-							animationplayer.play("attackright")
-						elif direction == -1:
-							animationplayer.play("attackleft")
+					if direction == 1:
+						animationplayer.play("attackright")
+					elif direction == -1:
+						animationplayer.play("attackleft")
 					
 					#cooldown.start()
 				2:
@@ -213,10 +211,10 @@ func _on_Hurtbox_area_entered(area):
 	take_damage(1)
 	gothit = true
 	animationplayer.play("hit")
-
-func refresh_hit_state():
-	gothit = false
 	
+func refresh_hit_state():
+	gothit = false	
+
 func take_damage(damage):
 	life -= damage
 	lifelabel.text = str(life)

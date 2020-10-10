@@ -30,18 +30,15 @@ var gothit := false
 var knockback_dir := 1
 var knockbackevent := false
 
-onready var actiontimer = $ActionTimer
-onready var weapontimer = $WeaponTimer
 onready var dashtimer = $DashInputTimer
 onready var dashdurationtimer = $DashDurationTimer
-onready var knockbackeventtimer = $Knockbackevent
 onready var dashcooldown = $DashCooldown
+onready var knockbackeventtimer = $Knockbackevent
 onready var statelabel = $StateLabel
 onready var itemlabel = $ItemLabel
 onready var lifelabel = $LifeLabel
 onready var weaponcarriedA = $WeaponA
 onready var weaponcarriedB = $WeaponB
-onready var cooldown = $Cooldown
 onready var raycast = $RayCast2D
 onready var animationplayer = $AnimationPlayer
 onready var sprite = $Sprite
@@ -65,36 +62,36 @@ func _physics_process(delta):
 	elif !raycast.is_colliding():
 		stomped_on = false
 		
-	if Input.is_action_just_pressed("Left_B"):		
-		if wantstodash:
-			if previousdirection == -1 and !dashing:
-				if !dashoncooldown:
-					dashdurationtimer.start()
-					dashing = true
-					print("dashing left")
-		wantstodash = true
-		dashtimer.start()
-		previousdirection = -1
-	if Input.is_action_just_pressed("Right_B"):
-		if wantstodash:
-			if previousdirection == 1 and !dashing:
-				if !dashoncooldown:
-					dashdurationtimer.start()
-					dashing = true
-					print("dashing right")
-		wantstodash = true
-		dashtimer.start()
-		previousdirection = 1
-	if dashing:
-		speed = DASHSPEED
+#	if Input.is_action_just_pressed("Left_A"):		
+#		if wantstodash:
+#			if previousdirection == -1 and !dashing:
+#				if !dashoncooldown:
+#					dashdurationtimer.start()
+#					dashing = true
+#					print("dashing left")
+#		wantstodash = true
+#		dashtimer.start()
+#		previousdirection = -1
+#	if Input.is_action_just_pressed("Left_A"):
+#		if wantstodash:
+#			if previousdirection == 1 and !dashing:
+#				if !dashoncooldown:
+#					dashdurationtimer.start()
+#					dashing = true
+#					print("dashing right")
+#		wantstodash = true
+#		dashtimer.start()
+#		previousdirection = 1
+#	if dashing:
+#		speed = DASHSPEED
 
 
-	if Input.is_action_pressed("Left_B"):
-		direction = -1
-		sprite.flip_h = true
-	elif Input.is_action_pressed("Right_B"):
-		direction = 1
-		sprite.flip_h = false
+	if Input.is_action_just_pressed("Left_B"):
+		direction *= -1
+		sprite.flip_h = !sprite.flip_h
+#	elif Input.is_action_pressed("Left_A"):
+#		direction = 1
+#		sprite.flip_h = false
 	#else:
 		#direction = 0
 	if Input.is_action_just_pressed("Jump_B"):
@@ -212,6 +209,11 @@ func _on_Hurtbox_area_entered(area):
 	knockbackevent = true
 	knockbackeventtimer.start()
 	take_damage(1)
+	gothit = true
+	animationplayer.play("hit")
+	
+func refresh_hit_state():
+	gothit = false	
 
 func take_damage(damage):
 	life -= damage

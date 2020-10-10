@@ -177,6 +177,33 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=4]
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 25, 27, 28, 29, 30, 31 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "refresh_hit_state"
+} ]
+}
 
 [sub_resource type="Animation" id=5]
 loop = true
@@ -239,8 +266,9 @@ script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
+flip_h = true
 hframes = 32
-frame = 24
+frame = 31
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/attackleft = SubResource( 1 )
@@ -320,11 +348,10 @@ collide_with_bodies = false
 
 [node name="WeaponA" parent="." instance=ExtResource( 3 )]
 modulate = Color( 1, 1, 1, 1 )
-position = Vector2( 16, 8 )
-rotation = 0.622843
+position = Vector2( 21, -12 )
+rotation = 1.5708
 scale = Vector2( 3, 3 )
 texture = ExtResource( 4 )
-flip_h = true
 
 [node name="Hitbox" parent="WeaponA" index="0"]
 collision_mask = 224
