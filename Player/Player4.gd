@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 
-const MAXSPEED = 200
+const MAXSPEED = 165
 const DASHSPEED = 600
 const FLOOR_NORMAL = Vector2(0, -1)
 const GRAVITY = 20
@@ -23,13 +23,14 @@ var previousdirection := 0
 var dashing := false
 var knockback := false
 var dashoncooldown := false
-var weaponNumber := 2
+var weaponNumber := 0
 var attack := false
 var count := 3
 var gothit := false
 var knockback_dir := 1
 var knockbackevent := false
 var durability := 0
+var candoublejump := false
 signal rangeAttack(playerid)
 
 onready var dashtimer = $DashInputTimer
@@ -99,8 +100,15 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("Jump_D"):
 		if is_on_floor():
 			velocity.y = JUMP_POWER
+			candoublejump = true
 			if can_attack and !gothit:
 				animationplayer.play("jump")
+		elif candoublejump:
+			velocity.y = JUMP_POWER
+			candoublejump = false
+			if can_attack and !gothit:
+				animationplayer.play("jump")
+				
 	if Input.is_action_just_released("Jump_D"):
 		if !is_on_floor():
 			if can_attack and !gothit:
@@ -167,7 +175,7 @@ func _physics_process(delta):
 
 
 func pickup():
-	weaponNumber = randi() % 3
+	weaponNumber = randi() % 2 + 1
 	print(weaponNumber)
 	itemlabel.text = str(weaponNumber)
 	if weaponNumber == 0:

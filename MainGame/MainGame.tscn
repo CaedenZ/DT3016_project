@@ -182,11 +182,13 @@ texture = ExtResource( 13 )
 position = Vector2( 160, 200 )
 
 [node name="Player2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 367.029, 170.674 )
 
 [node name="Player3" parent="." instance=ExtResource( 6 )]
+position = Vector2( 223.029, 314.674 )
 
 [node name="Player4" parent="." instance=ExtResource( 16 )]
-position = Vector2( 313.095, 149.055 )
+position = Vector2( 455.029, 394.674 )
 
 [node name="GameTimer" type="Timer" parent="."]
 process_mode = 0
@@ -204,39 +206,6 @@ autostart = true
 [node name="Bullet" parent="." instance=ExtResource( 17 )]
 position = Vector2( 800.288, 114.674 )
 scale = Vector2( 0.03, 0.03 )
-
-[node name="Lives" type="Node2D" parent="."]
-position = Vector2( 39.0287, 34.6735 )
-
-[node name="P1_lives" parent="Lives" instance=ExtResource( 17 )]
-
-[node name="Character" parent="Lives/P1_lives" index="0"]
-position = Vector2( -21, -4 )
-
-[node name="Sprite" parent="Lives/P1_lives" index="1"]
-position = Vector2( 24, 0 )
-
-[node name="RichTextLabel" parent="Lives/P1_lives" index="2"]
-margin_left = -8.0
-margin_right = 144.0
-
-[node name="P2_lives" parent="Lives" instance=ExtResource( 17 )]
-position = Vector2( 104, -1 )
-
-[node name="Character" parent="Lives/P2_lives" index="0"]
-texture = ExtResource( 19 )
-
-[node name="P3_lives" parent="Lives" instance=ExtResource( 17 )]
-position = Vector2( 184, -1 )
-
-[node name="Character" parent="Lives/P3_lives" index="0"]
-texture = ExtResource( 20 )
-
-[node name="P4_lives" parent="Lives" instance=ExtResource( 17 )]
-position = Vector2( 264, -1 )
-
-[node name="Character" parent="Lives/P4_lives" index="0"]
-texture = ExtResource( 18 )
 
 [node name="Stars" type="Node2D" parent="."]
 
@@ -313,6 +282,40 @@ position = Vector2( 375.273, 98.0284 )
 scale = Vector2( 1.28073, 1.19442 )
 texture = ExtResource( 10 )
 offset = Vector2( -26.5, -39.3501 )
+
+[node name="Lives" type="Node2D" parent="."]
+position = Vector2( 79.0287, 50.6735 )
+scale = Vector2( 2, 2 )
+
+[node name="P1_lives" parent="Lives" instance=ExtResource( 17 )]
+
+[node name="Character" parent="Lives/P1_lives" index="0"]
+position = Vector2( -21, -4 )
+
+[node name="Sprite" parent="Lives/P1_lives" index="1"]
+position = Vector2( 24, 0 )
+
+[node name="RichTextLabel" parent="Lives/P1_lives" index="2"]
+margin_left = -8.0
+margin_right = 144.0
+
+[node name="P2_lives" parent="Lives" instance=ExtResource( 17 )]
+position = Vector2( 104, -1 )
+
+[node name="Character" parent="Lives/P2_lives" index="0"]
+texture = ExtResource( 19 )
+
+[node name="P3_lives" parent="Lives" instance=ExtResource( 17 )]
+position = Vector2( 184, -1 )
+
+[node name="Character" parent="Lives/P3_lives" index="0"]
+texture = ExtResource( 20 )
+
+[node name="P4_lives" parent="Lives" instance=ExtResource( 17 )]
+position = Vector2( 264, -1 )
+
+[node name="Character" parent="Lives/P4_lives" index="0"]
+texture = ExtResource( 18 )
 [connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]
 [connection signal="timeout" from="ItemTimer" to="." method="_on_ItemTimer_timeout"]
 

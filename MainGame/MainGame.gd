@@ -65,9 +65,9 @@ func updateplayer(playerid):
 		"Player2":
 			player2.pickup()
 		"Player3":
-			player2.pickup()
+			player3.pickup()
 		"Player4":
-			player2.pickup()
+			player4.pickup()
 
 func generateBullet(playerid):
 	print(playerid)
