@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Tilesets/NewMap.tres" type="TileSet" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Materials/stringstar fields/plant1.png" type="Texture" id=14]
 [ext_resource path="res://Particles/fireflies.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Player/Player4.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Items/Bullet.tscn" type="PackedScene" id=17]
 
 [node name="MainGame" type="Node2D"]
 position = Vector2( 0.971313, -2.67352 )
@@ -32,11 +33,12 @@ scale = Vector2( 2.22025, 2.15494 )
 texture = ExtResource( 7 )
 
 [node name="Background3" type="Sprite" parent="."]
-position = Vector2( 319.259, 149.016 )
+position = Vector2( 319.029, 150 )
 scale = Vector2( 2.22025, 2.23351 )
 texture = ExtResource( 8 )
 
 [node name="Particles2D" parent="." instance=ExtResource( 15 )]
+visible = false
 amount = 360
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -190,7 +192,13 @@ position = Vector2( 808, 216 )
 scale = Vector2( 0.890625, 0.421875 )
 
 [node name="ItemTimer" type="Timer" parent="."]
-wait_time = 30.0
+wait_time = 5.0
+autostart = true
+
+[node name="Bullet" parent="." instance=ExtResource( 17 )]
+position = Vector2( 800.288, 114.674 )
+scale = Vector2( 0.03, 0.03 )
+mass = 100.0
 [connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]
 [connection signal="timeout" from="ItemTimer" to="." method="_on_ItemTimer_timeout"]
 
