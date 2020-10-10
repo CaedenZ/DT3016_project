@@ -1,5 +1,4 @@
-
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Tilesets/NewMap.tres" type="TileSet" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -17,11 +16,10 @@
 [ext_resource path="res://Materials/stringstar fields/plant1.png" type="Texture" id=14]
 [ext_resource path="res://Particles/fireflies.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Player/Player4.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Items/Bullet.tscn" type="PackedScene" id=17]
-[ext_resource path="res://UI/Lives.tscn" type="PackedScene" id=18]
-[ext_resource path="res://UI/virtual_guy.png" type="Texture" id=19]
-[ext_resource path="res://UI/ninja_frog.png" type="Texture" id=20]
-[ext_resource path="res://UI/pink_man.png" type="Texture" id=21]
+[ext_resource path="res://UI/Lives.tscn" type="PackedScene" id=17]
+[ext_resource path="res://UI/virtual_guy.png" type="Texture" id=18]
+[ext_resource path="res://UI/ninja_frog.png" type="Texture" id=19]
+[ext_resource path="res://UI/pink_man.png" type="Texture" id=20]
 
 [node name="MainGame" type="Node2D"]
 position = Vector2( 0.971313, -2.67352 )
@@ -203,7 +201,6 @@ autostart = true
 [node name="Bullet" parent="." instance=ExtResource( 17 )]
 position = Vector2( 800.288, 114.674 )
 scale = Vector2( 0.03, 0.03 )
-mass = 100.0
 
 [node name="Lives" type="Node2D" parent="."]
 position = Vector2( 39.0287, 34.6735 )
@@ -237,7 +234,6 @@ position = Vector2( 264, -1 )
 
 [node name="Character" parent="Lives/P4_lives" index="0"]
 texture = ExtResource( 18 )
-
 [connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]
 [connection signal="timeout" from="ItemTimer" to="." method="_on_ItemTimer_timeout"]
 
