@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 
-const MAXSPEED = 200
+const MAXSPEED = 165
 const DASHSPEED = 600
 const FLOOR_NORMAL = Vector2(0, -1)
 const GRAVITY = 20
@@ -23,13 +23,14 @@ var previousdirection := 0
 var dashing := false
 var knockback := false
 var dashoncooldown := false
-var weaponNumber := 2
+var weaponNumber := 0
 var attack := false
 var count := 3
 var gothit := false
 var knockback_dir := 1
 var knockbackevent := false
-
+var durability := 0
+var candoublejump := false
 signal rangeAttack(playerid)
 
 onready var dashtimer = $DashInputTimer
@@ -102,6 +103,12 @@ func _physics_process(delta):
 		new_particles.emitting = true
 		if is_on_floor():
 			velocity.y = JUMP_POWER
+			candoublejump = true
+			if can_attack and !gothit:
+				animationplayer.play("jump")
+		elif candoublejump:
+			velocity.y = JUMP_POWER
+			candoublejump = false
 			if can_attack and !gothit:
 				animationplayer.play("jump")
 				new_particles.position = position
@@ -177,40 +184,51 @@ func _physics_process(delta):
 
 
 func pickup():
-	weaponNumber = randi() % 3
+	weaponNumber = randi() % 2 + 1
 	print(weaponNumber)
 	itemlabel.text = str(weaponNumber)
+	if weaponNumber == 0:
+		weaponcarriedA.hide()
+		weaponcarriedB.hide()
 	if weaponNumber == 1:
 		weaponcarriedA.show()
 		weaponcarriedB.hide()
+		durability = 10
 	elif weaponNumber == 2:
 		weaponcarriedB.show()
 		weaponcarriedA.hide()
+		durability = 5
 
 func attack():
 	if can_attack:
 		match weaponNumber:
 				0:
 					print("We are number one!")
-					emit_signal("rangeAttack", name)
+					
 				1:
 					print("Two are better than one!")
 					can_attack = false
 					weaponcarriedA.get_node("Hitbox/CollisionShape2D").disabled = false
 					if !gothit:
+						durability -= 1
 						if direction == 1:
 							animationplayer.play("attackright")
 						elif direction == -1:
 							animationplayer.play("attackleft")
+						
 					
 					#cooldown.start()
 				2:
 					print("Oh snap! It's a string!")
 					emit_signal("rangeAttack", name)
+					durability -= 1
+					checkdurability()
 
-
-
-	
+func checkdurability():
+	if durability <= 0:
+		weaponNumber = 0
+		weaponcarriedA.hide()
+		weaponcarriedB.hide()
 
 
 func _on_Hurtbox_area_entered(area):

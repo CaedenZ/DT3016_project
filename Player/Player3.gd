@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 
-const MAXSPEED = 200
+const MAXSPEED = 165
 const DASHSPEED = 600
 const FLOOR_NORMAL = Vector2(0, -1)
 const GRAVITY = 20
@@ -23,12 +23,15 @@ var previousdirection := 0
 var dashing := false
 var knockback := false
 var dashoncooldown := false
-var weaponNumber := 1
+var weaponNumber := 0
 var attack := false
 var count := 3
 var gothit := false
 var knockback_dir := 1
 var knockbackevent := false
+var durability := 0
+var candoublejump := false
+signal rangeAttack(playerid)
 
 onready var dashtimer = $DashInputTimer
 onready var dashdurationtimer = $DashDurationTimer
@@ -53,8 +56,6 @@ func _ready():
 	lifelabel.text = str(life)
 	weaponcarriedA.get_node("Hitbox/CollisionShape2D").disabled = true
 	weaponcarriedA.connect("playerhit", self, "player_hit")
-	weaponcarriedB.get_node("Hitbox_ranged/CollisionShape2D").disabled = true
-	weaponcarriedB.connect("playerhit", self, "player_hit")
 	itemlabel.text = str(weaponNumber)
 func _physics_process(delta):
 	if raycast.is_colliding() and !stomped_on:
@@ -99,11 +100,18 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("Jump_C"):
 		if is_on_floor():
 			velocity.y = JUMP_POWER
-			if can_attack:
+			candoublejump = true
+			if can_attack and !gothit:
 				animationplayer.play("jump")
+		elif candoublejump:
+			velocity.y = JUMP_POWER
+			candoublejump = false
+			if can_attack and !gothit:
+				animationplayer.play("jump")
+				
 	if Input.is_action_just_released("Jump_C"):
 		if !is_on_floor():
-			if can_attack:
+			if can_attack and !gothit:
 				animationplayer.play("fall")
 			if velocity.y < 0:
 				velocity.y *= 0.5
@@ -148,7 +156,7 @@ func _physics_process(delta):
 	velocity.y += GRAVITY
 	#move_and_collide(velocity*delta)
 	if is_on_floor():
-		if can_attack:
+		if can_attack and !gothit:
 			animationplayer.play("run")
 		if direction == -1:
 			sprite.flip_h = true
@@ -167,36 +175,51 @@ func _physics_process(delta):
 
 
 func pickup():
-	weaponNumber = randi() % 3
+	weaponNumber = randi() % 2 + 1
 	print(weaponNumber)
 	itemlabel.text = str(weaponNumber)
+	if weaponNumber == 0:
+		weaponcarriedA.hide()
+		weaponcarriedB.hide()
 	if weaponNumber == 1:
 		weaponcarriedA.show()
+		weaponcarriedB.hide()
+		durability = 10
+	elif weaponNumber == 2:
+		weaponcarriedB.show()
+		weaponcarriedA.hide()
+		durability = 5
 
 func attack():
 	if can_attack:
 		match weaponNumber:
 				0:
 					print("We are number one!")
+					
 				1:
 					print("Two are better than one!")
 					can_attack = false
 					weaponcarriedA.get_node("Hitbox/CollisionShape2D").disabled = false
-					if direction == 1:
-						animationplayer.play("attackright")
-					elif direction == -1:
-						animationplayer.play("attackleft")
+					if !gothit:
+						durability -= 1
+						if direction == 1:
+							animationplayer.play("attackright")
+						elif direction == -1:
+							animationplayer.play("attackleft")
+						
 					
 					#cooldown.start()
 				2:
 					print("Oh snap! It's a string!")
-					#weaponcarriedB.show()
-					#weaponcarriedB.get_node("Hitbox/CollisionShape2D").disabled = false
-					#TODO: range weapon
+					emit_signal("rangeAttack", name)
+					durability -= 1
+					checkdurability()
 
-
-
-	
+func checkdurability():
+	if durability <= 0:
+		weaponNumber = 0
+		weaponcarriedA.hide()
+		weaponcarriedB.hide()
 
 
 func _on_Hurtbox_area_entered(area):
@@ -213,10 +236,10 @@ func _on_Hurtbox_area_entered(area):
 	take_damage(1)
 	gothit = true
 	animationplayer.play("hit")
-	
-func refresh_hit_state():
-	gothit = false	
 
+func refresh_hit_state():
+	gothit = false
+	
 func take_damage(damage):
 #	life -= damage
 #	lifelabel.text = str(life)
