@@ -16,6 +16,9 @@ onready var bulletIns = preload("res://Items/Bullet.tscn")
 
 func _ready():
 	player.connect("rangeAttack", self, "generateBullet")
+	player2.connect("rangeAttack", self, "generateBullet")
+	player3.connect("rangeAttack", self, "generateBullet")
+	player4.connect("rangeAttack", self, "generateBullet")
 	itembox.connect("playertouch", self, "updateplayer")
 	player.connect("update_life_ui", self, "updateplayerhealth")
 	player2.connect("update_life_ui", self, "updateplayerhealth")
@@ -58,24 +61,25 @@ func updateplayer(playerid):
 	print(playerid)
 	match playerid:
 		"Player":
-			print("Player 1 received")
 			player.pickup()
 		"Player2":
-			print("Player 2 received")
+			player2.pickup()
+		"Player3":
+			player2.pickup()
+		"Player4":
+			player2.pickup()
 
 func generateBullet(playerid):
 	print(playerid)
 	match playerid:
 		"Player":
-			print("Player 1 received")
 			bulletShoot(playerid,player.global_position,player.direction)
 		"Player2":
-			print("Player 2 received")
-			player2.pickup()
+			bulletShoot(playerid,player2.global_position,player2.direction)
 		"Player3":
-			print("Player 3 received")
+			bulletShoot(playerid,player3.global_position,player3.direction)
 		"Player4":
-			print("Player 4 received")
+			bulletShoot(playerid,player4.global_position,player4.direction)
 
 func bulletShoot(playerid,position,direction):
 	var bullet = bulletIns.instance()
@@ -85,6 +89,12 @@ func bulletShoot(playerid,position,direction):
 	match playerid:
 		"Player":
 			bullet.get_child(0).set_collision_mask_bit(4,false)
+		"Player2":
+			bullet.get_child(0).set_collision_mask_bit(5,false)
+		"Player3":
+			bullet.get_child(0).set_collision_mask_bit(6,false)
+		"Player4":
+			bullet.get_child(0).set_collision_mask_bit(7,false)
 	bullet.position = position
 	bullet.linear_velocity = Vector2(direction * 600, -100)
 	
