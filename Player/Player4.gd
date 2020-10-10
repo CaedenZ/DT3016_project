@@ -5,7 +5,7 @@ const MAXSPEED = 200
 const DASHSPEED = 600
 const FLOOR_NORMAL = Vector2(0, -1)
 const GRAVITY = 20
-const MAX_JUMP_POWER = -500
+const MAX_JUMP_POWER = -600
 const JUMP_POWER = -400
 
 var speed := MAXSPEED
@@ -157,11 +157,11 @@ func _physics_process(delta):
 		jumped = false
 		if statelabel.text == "jump":
 			statelabel.text = "running"
-	if position.x>640:
+	if position.x>1000:
 		position.x=0
 	if position.x<0:
-		position.x=640
-	if position.y>360:
+		position.x=1000
+	if position.y>600:
 		position.y=0
 
 
