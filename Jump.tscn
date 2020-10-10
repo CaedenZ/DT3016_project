@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Materials/New Piskel-3.png.png" type="Texture" id=1]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0.00105263, 0.536036 ), 0.0, 0.0, 0, 0, Vector2( 0.532632, 0.666667 ), 0.0, 0.0, 0, 0, Vector2( 0.998947, 0.632883 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 0.506757 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+trail_size_modifier = SubResource( 4 )
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+spread = 40.96
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_curve = SubResource( 2 )
+
+[node name="Jump" type="Particles2D"]
+position = Vector2( -80.4156, 296.03 )
+emitting = false
+amount = 1
+lifetime = 0.2
+explosiveness = 1.0
+process_material = SubResource( 5 )
+texture = ExtResource( 1 )

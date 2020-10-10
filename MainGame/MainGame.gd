@@ -99,7 +99,7 @@ func _on_ItemTimer_timeout():
 	var box = Itembox.instance()
 	var currentscene = get_tree().current_scene
 	currentscene.add_child(box)
-	box.position.x = randi() % 640
-	box.position.y = randi() % 360
+	box.position.x = randi() % 1000
+	box.position.y = randi() % 600
 	box.connect("playertouch", self, "updateplayer")
 	pass # Replace with function body.
