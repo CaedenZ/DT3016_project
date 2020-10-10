@@ -158,6 +158,7 @@ Jump_D={
 2d_physics/layer_6="HurtboxB"
 2d_physics/layer_7="HurtboxC"
 2d_physics/layer_8="HurtboxD"
+2d_physics/layer_9="Bullet"
 
 [rendering]
 
