@@ -44,6 +44,14 @@ onready var itemlabel = $ItemLabel
 onready var lifelabel = $LifeLabel
 onready var weaponcarriedA = $WeaponA
 onready var weaponcarriedB = $WeaponB
+onready var weaponcarriedC = $WeaponC
+
+onready var bombtimer1 = $WeaponC/FirstStateTimer
+onready var bombtimer2 = $WeaponC/SecondStateTimer
+onready var bombtimer3 = $WeaponC/ThirdStateTimer
+
+onready var bombblinkTimer = $WeaponC/BlinkTimer
+
 onready var raycast = $RayCast2D
 onready var animationplayer = $AnimationPlayer
 onready var sprite = $Sprite
@@ -51,6 +59,8 @@ var jumpPart = preload("res://Particles/Jump.tscn")
 onready var jumpSound = $Jump
 onready var heartsprite = $LifeManager/HP
 onready var lifecounter = $LifeManager/Lives
+
+onready var explosionIns = preload("res://Items/Explosion.tscn")
 
 signal update_life_ui(playerid)
 signal diedpermanently(playerid)
@@ -72,29 +82,6 @@ func _physics_process(delta):
 	elif !raycast.is_colliding():
 		stomped_on = false
 		
-#	if Input.is_action_just_pressed("Left_A"):		
-#		if wantstodash:
-#			if previousdirection == -1 and !dashing:
-#				if !dashoncooldown:
-#					dashdurationtimer.start()
-#					dashing = true
-#					print("dashing left")
-#		wantstodash = true
-#		dashtimer.start()
-#		previousdirection = -1
-#	if Input.is_action_just_pressed("Left_A"):
-#		if wantstodash:
-#			if previousdirection == 1 and !dashing:
-#				if !dashoncooldown:
-#					dashdurationtimer.start()
-#					dashing = true
-#					print("dashing right")
-#		wantstodash = true
-#		dashtimer.start()
-#		previousdirection = 1
-#	if dashing:
-#		speed = DASHSPEED
-
 
 	if Input.is_action_just_pressed("Left_B"):
 		if direction == 1:
@@ -104,7 +91,6 @@ func _physics_process(delta):
 			weaponcarriedB.position.x *= -1
 			weaponcarriedA.flip_h = false
 			weaponcarriedB.flip_h = false
-			print("change direction")
 		else:
 			#do action
 			attack()
@@ -213,12 +199,13 @@ func _physics_process(delta):
 
 
 func pickup():
-	weaponNumber = randi() % 2 + 1
+	weaponNumber = randi() % 3 + 1
 	print(weaponNumber)
 	itemlabel.text = str(weaponNumber)
 	if weaponNumber == 0:
 		weaponcarriedA.hide()
 		weaponcarriedB.hide()
+		weaponcarriedC.hide()
 	if weaponNumber == 1:
 		weaponcarriedA.show()
 		weaponcarriedB.hide()
@@ -227,6 +214,12 @@ func pickup():
 		weaponcarriedB.show()
 		weaponcarriedA.hide()
 		durability = 5
+	elif weaponNumber == 3:
+		weaponcarriedC.show()
+		weaponcarriedB.hide()
+		weaponcarriedA.hide()
+		bombtimer1.start()
+		bombblinkTimer.start()
 
 func attack():
 	if can_attack:
@@ -339,3 +332,27 @@ func reposition_sword():
 	else: #left
 		weaponcarriedA.position = Vector2(23,-8)
 		weaponcarriedA.flip_h = false
+
+
+func _on_FirstStateTimer_timeout():
+	bombblinkTimer.wait_time = 0.5
+	bombtimer2.start()
+
+func _on_SecondStateTimer_timeout():
+	bombblinkTimer.wait_time = 0.1
+	bombtimer3.start()
+
+
+func _on_ThirdStateTimer_timeout():
+	bombblinkTimer.wait_time = 1
+	bombblinkTimer.stop()
+	var explosion = explosionIns.instance()
+	add_child(explosion)
+	weaponcarriedC.hide()
+
+
+func _on_BlinkTimer_timeout():
+	if weaponcarriedC.modulate.a == 1:
+		weaponcarriedC.modulate.a = 0.5
+	elif weaponcarriedC.modulate.a == 0.5:
+		weaponcarriedC.modulate.a = 1
