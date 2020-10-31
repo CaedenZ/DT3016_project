@@ -13,6 +13,7 @@ onready var p4_lives = $Lives/P4_lives
 onready var itembox = $ItemBox
 onready var itemspawn = $ItemSpawn
 onready var bulletIns = preload("res://Items/Bullet.tscn")
+var confetti = preload("res://Items/Confetti.tscn")
 
 func _ready():
 	player.connect("rangeAttack", self, "generateBullet")
@@ -75,12 +76,24 @@ func updateplayer(playerid):
 	match playerid:
 		"Player":
 			player.pickup()
+			var Confetti = confetti.instance()
+			add_child(Confetti)
+			Confetti.global_position = player.global_position
 		"Player2":
 			player2.pickup()
+			var Confetti = confetti.instance()
+			add_child(Confetti)
+			Confetti.global_position = player2.global_position
 		"Player3":
 			player3.pickup()
+			var Confetti = confetti.instance()
+			add_child(Confetti)
+			Confetti.global_position = player3.global_position
 		"Player4":
 			player4.pickup()
+			var Confetti = confetti.instance()
+			add_child(Confetti)
+			Confetti.global_position = player4.global_position
 
 func generateBullet(playerid):
 	print(playerid)
