@@ -375,6 +375,20 @@ texture = ExtResource( 18 )
 stream = ExtResource( 21 )
 volume_db = -20.715
 autoplay = true
+
+[node name="ItemSpawn" type="Node2D" parent="."]
+
+[node name="Location1" type="Node2D" parent="ItemSpawn"]
+position = Vector2( 479.029, 298.674 )
+
+[node name="Location2" type="Node2D" parent="ItemSpawn"]
+position = Vector2( 919.029, 58.6735 )
+
+[node name="Location3" type="Node2D" parent="ItemSpawn"]
+position = Vector2( 191.029, 482.674 )
+
+[node name="Location4" type="Node2D" parent="ItemSpawn"]
+position = Vector2( 623.029, 306.674 )
 [connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]
 [connection signal="timeout" from="ItemTimer" to="." method="_on_ItemTimer_timeout"]
 

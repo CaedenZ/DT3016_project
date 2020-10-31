@@ -11,8 +11,9 @@ onready var p2_lives = $Lives/P2_lives
 onready var p3_lives = $Lives/P3_lives
 onready var p4_lives = $Lives/P4_lives
 onready var itembox = $ItemBox
-
+onready var itemspawn = $ItemSpawn
 onready var bulletIns = preload("res://Items/Bullet.tscn")
+var confetti = preload("res://Items/Confetti.tscn")
 
 func _ready():
 	player.connect("rangeAttack", self, "generateBullet")
@@ -75,12 +76,24 @@ func updateplayer(playerid):
 	match playerid:
 		"Player":
 			player.pickup()
+			var Confetti = confetti.instance()
+			add_child(Confetti)
+			Confetti.global_position = player.global_position
 		"Player2":
 			player2.pickup()
+			var Confetti = confetti.instance()
+			add_child(Confetti)
+			Confetti.global_position = player2.global_position
 		"Player3":
 			player3.pickup()
+			var Confetti = confetti.instance()
+			add_child(Confetti)
+			Confetti.global_position = player3.global_position
 		"Player4":
 			player4.pickup()
+			var Confetti = confetti.instance()
+			add_child(Confetti)
+			Confetti.global_position = player4.global_position
 
 func generateBullet(playerid):
 	print(playerid)
@@ -114,7 +127,6 @@ func bulletShoot(playerid,position,direction):
 
 func _on_GameTimer_timeout():
 	print("Time 20s")
-	pass # Replace with function body.
 
 
 func _on_ItemTimer_timeout():
@@ -122,7 +134,7 @@ func _on_ItemTimer_timeout():
 	var box = Itembox.instance()
 	var currentscene = get_tree().current_scene
 	currentscene.add_child(box)
-	box.position.x = randi() % 1000
-	box.position.y = randi() % 600
+	var index = randi() % 4
+	var spawnpt = itemspawn.get_children()
+	box.position = spawnpt[index].position
 	box.connect("playertouch", self, "updateplayer")
-	pass # Replace with function body.
