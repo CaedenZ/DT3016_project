@@ -22,7 +22,7 @@ _global_script_class_icons={
 
 config/name="DT3016"
 run/main_scene="res://Screens/StartScreen.tscn"
-config/icon="res://icon.png"
+config/icon="res://assets/Fruit/PinClipart.com_minecraft-clip-art_5259932.png"
 
 [display]
 
