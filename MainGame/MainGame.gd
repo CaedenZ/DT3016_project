@@ -11,7 +11,7 @@ onready var p2_lives = $Lives/P2_lives
 onready var p3_lives = $Lives/P3_lives
 onready var p4_lives = $Lives/P4_lives
 onready var itembox = $ItemBox
-
+onready var itemspawn = $ItemSpawn
 onready var bulletIns = preload("res://Items/Bullet.tscn")
 
 func _ready():
@@ -114,7 +114,6 @@ func bulletShoot(playerid,position,direction):
 
 func _on_GameTimer_timeout():
 	print("Time 20s")
-	pass # Replace with function body.
 
 
 func _on_ItemTimer_timeout():
@@ -122,7 +121,7 @@ func _on_ItemTimer_timeout():
 	var box = Itembox.instance()
 	var currentscene = get_tree().current_scene
 	currentscene.add_child(box)
-	box.position.x = randi() % 1000
-	box.position.y = randi() % 600
+	var index = randi() % 4
+	var spawnpt = itemspawn.get_children()
+	box.position = spawnpt[index].position
 	box.connect("playertouch", self, "updateplayer")
-	pass # Replace with function body.
