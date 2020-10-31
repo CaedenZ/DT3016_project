@@ -232,9 +232,6 @@ texture = ExtResource( 13 )
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 160, 200 )
 
-[node name="LifeLabel" parent="Player" index="10"]
-visible = false
-
 [node name="Player2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 367.029, 170.674 )
 
@@ -338,6 +335,7 @@ texture = ExtResource( 10 )
 offset = Vector2( -26.5, -39.3501 )
 
 [node name="Lives" type="Node2D" parent="."]
+visible = false
 position = Vector2( 79.0287, 50.6735 )
 scale = Vector2( 2, 2 )
 
