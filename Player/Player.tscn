@@ -414,14 +414,14 @@ visible = false
 [node name="Jump" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="LifeManager" type="Node2D" parent="."]
 
-[node name="HP" type="Sprite" parent="Node2D"]
+[node name="HP" type="Sprite" parent="LifeManager"]
 position = Vector2( 0, -30 )
 texture = ExtResource( 6 )
 hframes = 5
 
-[node name="Lives" type="Label" parent="Node2D"]
+[node name="Lives" type="Label" parent="LifeManager"]
 margin_left = -37.8651
 margin_top = -47.8087
 margin_right = 2.13492
