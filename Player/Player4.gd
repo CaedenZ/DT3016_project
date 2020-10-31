@@ -31,6 +31,8 @@ var knockback_dir := 1
 var knockbackevent := false
 var durability := 0
 var candoublejump := false
+var max_hp = 4
+var lives = 3
 signal rangeAttack(playerid)
 
 onready var dashtimer = $DashInputTimer
@@ -47,8 +49,11 @@ onready var animationplayer = $AnimationPlayer
 onready var sprite = $Sprite
 var jumpPart = preload("res://Particles/Jump.tscn")
 onready var jumpSound = $Jump
+onready var heartsprite = $LifeManager/HP
+onready var lifecounter = $LifeManager/Lives
 
 signal update_life_ui(playerid)
+signal diedpermanently(playerid)
 
 func _ready():
 	randomize()
@@ -95,6 +100,10 @@ func _physics_process(delta):
 		if direction == 1:
 			direction = -1
 			sprite.flip_h = !sprite.flip_h
+			weaponcarriedA.position = Vector2(23, -8)
+			weaponcarriedB.position.x *= -1
+			weaponcarriedA.flip_h = false
+			weaponcarriedB.flip_h = false
 			print("change direction")
 		else:
 			#do action
@@ -104,6 +113,10 @@ func _physics_process(delta):
 		if direction == -1:
 			direction = 1
 			sprite.flip_h = !sprite.flip_h
+			weaponcarriedA.position = Vector2(-23, -8)
+			weaponcarriedB.position.x *= -1
+			weaponcarriedA.flip_h = true
+			weaponcarriedB.flip_h = true
 			print("change direction")
 		else:
 			#do action
@@ -171,7 +184,7 @@ func _physics_process(delta):
 			velocity.x = knockback_dir * DASHSPEED
 		elif(abs(velocity.x - direction * speed) > 50):
 			velocity.x += (direction * speed - velocity.x) /20
-			print(velocity.x)
+			#print(velocity.x)
 		else:
 			velocity.x = direction * speed
 	else:
@@ -277,6 +290,22 @@ func take_damage(damage):
 #		position.x = 100
 #		position.y = 200
 
+func update_heartsprite():
+	if lives > 0:
+		heartsprite.frame += 1
+		max_hp -= 1
+		print("max_hp is " + str(max_hp))
+		if max_hp <= 0:
+			lives -= 1
+			update_lifecounter()
+
+func update_lifecounter():
+	lifecounter.text = "X" + str(lives)
+	if lives > 0:
+		heartsprite.frame = 0
+		max_hp = 4
+	else:
+		emit_signal("diedpermanently", name)
 
 func _on_DashTimer_timeout():
 	wantstodash = false
@@ -302,3 +331,11 @@ func end_attack():
 func _on_Knockbackevent_timeout():
 	knockbackevent = false
 	pass # Replace with function body.
+
+func reposition_sword():
+	if direction: #right
+		weaponcarriedA.position = Vector2(-23,-8)
+		weaponcarriedA.flip_h = true
+	else: #left
+		weaponcarriedA.position = Vector2(23,-8)
+		weaponcarriedA.flip_h = false

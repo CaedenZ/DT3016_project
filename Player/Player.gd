@@ -49,8 +49,8 @@ onready var animationplayer = $AnimationPlayer
 onready var sprite = $Sprite
 var jumpPart = preload("res://Particles/Jump.tscn")
 onready var jumpSound = $Jump
-onready var heartsprite = $HP
-onready var lifecounter = $Lives
+onready var heartsprite = $LifeManager/HP
+onready var lifecounter = $LifeManager/Lives
 
 signal update_life_ui(playerid)
 signal diedpermanently(playerid)
@@ -184,7 +184,7 @@ func _physics_process(delta):
 			velocity.x = knockback_dir * DASHSPEED
 		elif(abs(velocity.x - direction * speed) > 50):
 			velocity.x += (direction * speed - velocity.x) /20
-			print(velocity.x)
+			#print(velocity.x)
 		else:
 			velocity.x = direction * speed
 	else:
@@ -294,6 +294,7 @@ func update_heartsprite():
 	if lives > 0:
 		heartsprite.frame += 1
 		max_hp -= 1
+		print("max_hp is " + str(max_hp))
 		if max_hp <= 0:
 			lives -= 1
 			update_lifecounter()

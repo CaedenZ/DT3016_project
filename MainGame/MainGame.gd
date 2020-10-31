@@ -24,10 +24,10 @@ func _ready():
 	player2.connect("update_life_ui", self, "updateplayerhealth")
 	player3.connect("update_life_ui", self, "updateplayerhealth")
 	player4.connect("update_life_ui", self, "updateplayerhealth")
-	p1_lives.connect("diedpermanently", self, "diepermanently")
-	p2_lives.connect("diedpermanently", self, "diepermanently")
-	p3_lives.connect("diedpermanently", self, "diepermanently")
-	p4_lives.connect("diedpermanently", self, "diepermanently")
+	player.connect("diedpermanently", self, "diepermanently")
+	player2.connect("diedpermanently", self, "diepermanently")
+	player3.connect("diedpermanently", self, "diepermanently")
+	player4.connect("diedpermanently", self, "diepermanently")
 	count = 0
 	gameTimer = $GameTimer
 	for child in Globalscript.Players_array:
@@ -62,13 +62,13 @@ func diepermanently(playerid):
 func updateplayerhealth(playerid):
 	match playerid:
 		"Player":
-			p1_lives.update_heartsprite()
+			player.update_heartsprite()
 		"Player2":
-			p2_lives.update_heartsprite()
+			player2.update_heartsprite()
 		"Player3":
-			p3_lives.update_heartsprite()
+			player3.update_heartsprite()
 		"Player4":
-			p4_lives.update_heartsprite()
+			player4.update_heartsprite()
 
 func updateplayer(playerid):
 	print(playerid)
