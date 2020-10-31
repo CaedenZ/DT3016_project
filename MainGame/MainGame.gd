@@ -30,6 +30,19 @@ func _ready():
 	p4_lives.connect("diedpermanently", self, "diepermanently")
 	count = 0
 	gameTimer = $GameTimer
+	for child in Globalscript.Players_array:
+		if !child:
+			match count:
+				0:
+					player.queue_free()
+				1:
+					player2.queue_free()
+				2:
+					player3.queue_free()
+				3:
+					player4.queue_free()
+		count += 1
+				
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("restart"):
@@ -37,13 +50,13 @@ func _physics_process(delta):
 
 func diepermanently(playerid):
 	match playerid:
-		"P1_lives":
+		"Player":
 			player.queue_free()
-		"P2_lives":
+		"Player2":
 			player2.queue_free()
-		"P3_lives":
+		"Player3":
 			player3.queue_free()
-		"P4_lives":
+		"Player4":
 			player4.queue_free()
 
 func updateplayerhealth(playerid):

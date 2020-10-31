@@ -24,6 +24,10 @@ config/name="DT3016"
 run/main_scene="res://Screens/StartScreen.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Globalscript="*res://globalscript.gd"
+
 [display]
 
 window/size/width=1000

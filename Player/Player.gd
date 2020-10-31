@@ -31,6 +31,8 @@ var knockback_dir := 1
 var knockbackevent := false
 var durability := 0
 var candoublejump := false
+var max_hp = 4
+var lives = 3
 signal rangeAttack(playerid)
 
 onready var dashtimer = $DashInputTimer
@@ -47,8 +49,11 @@ onready var animationplayer = $AnimationPlayer
 onready var sprite = $Sprite
 var jumpPart = preload("res://Particles/Jump.tscn")
 onready var jumpSound = $Jump
+onready var heartsprite = $HP
+onready var lifecounter = $Lives
 
 signal update_life_ui(playerid)
+signal diedpermanently(playerid)
 
 func _ready():
 	randomize()
@@ -285,6 +290,21 @@ func take_damage(damage):
 #		position.x = 100
 #		position.y = 200
 
+func update_heartsprite():
+	if lives > 0:
+		heartsprite.frame += 1
+		max_hp -= 1
+		if max_hp <= 0:
+			lives -= 1
+			update_lifecounter()
+
+func update_lifecounter():
+	lifecounter.text = "X" + str(lives)
+	if lives > 0:
+		heartsprite.frame = 0
+		max_hp = 4
+	else:
+		emit_signal("diedpermanently", name)
 
 func _on_DashTimer_timeout():
 	wantstodash = false

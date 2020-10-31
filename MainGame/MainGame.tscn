@@ -198,6 +198,12 @@ texture = ExtResource( 13 )
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 160, 200 )
 
+[node name="ItemLabel" parent="Player" index="9"]
+visible = false
+
+[node name="LifeLabel" parent="Player" index="10"]
+visible = false
+
 [node name="Player2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 367.029, 170.674 )
 
