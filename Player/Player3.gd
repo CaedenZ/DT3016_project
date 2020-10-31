@@ -32,7 +32,6 @@ var knockbackevent := false
 var durability := 0
 var candoublejump := false
 signal rangeAttack(playerid)
-var jumpPart = preload("res://Particles/Jump.tscn")
 
 onready var dashtimer = $DashInputTimer
 onready var dashdurationtimer = $DashDurationTimer
@@ -46,6 +45,7 @@ onready var weaponcarriedB = $WeaponB
 onready var raycast = $RayCast2D
 onready var animationplayer = $AnimationPlayer
 onready var sprite = $Sprite
+var jumpPart = preload("res://Particles/Jump.tscn")
 onready var jumpSound = $Jump
 
 signal update_life_ui(playerid)
@@ -92,13 +92,31 @@ func _physics_process(delta):
 
 
 	if Input.is_action_just_pressed("Left_C"):
-		direction *= -1
-		sprite.flip_h = !sprite.flip_h
-#	elif Input.is_action_pressed("Left_A"):
-#		direction = 1
-#		sprite.flip_h = false
-	#else:
-		#direction = 0
+		if direction == 1:
+			direction = -1
+			sprite.flip_h = !sprite.flip_h
+			weaponcarriedA.position = Vector2(23, -8)
+			weaponcarriedB.position.x *= -1
+			weaponcarriedA.flip_h = false
+			weaponcarriedB.flip_h = false
+			print("change direction")
+		else:
+			#do action
+			attack()
+			print("attack")
+	elif Input.is_action_just_pressed("Right_C"):
+		if direction == -1:
+			direction = 1
+			sprite.flip_h = !sprite.flip_h
+			weaponcarriedA.position = Vector2(-23, -8)
+			weaponcarriedB.position.x *= -1
+			weaponcarriedA.flip_h = true
+			weaponcarriedB.flip_h = true
+			print("change direction")
+		else:
+			#do action
+			attack()
+			print("attack")
 	if Input.is_action_just_pressed("Jump_C"):
 		var new_particles = jumpPart.instance()
 		new_particles.emitting = true
@@ -120,15 +138,18 @@ func _physics_process(delta):
 				new_particles.position = position
 				var currentscene = get_tree().current_scene
 				currentscene.add_child(new_particles)
-				
 	if Input.is_action_just_released("Jump_C"):
+		var new_particles = jumpPart.instance()
 		if !is_on_floor():
 			if can_attack and !gothit:
 				animationplayer.play("fall")
 			if velocity.y < 0:
 				velocity.y *= 0.5
-	if Input.is_action_just_pressed("Action_C"):
-		attack()
+				new_particles.position = position
+				var currentscene = get_tree().current_scene
+				currentscene.add_child(new_particles)
+#	if Input.is_action_just_pressed("Action_A"):
+#		attack()
 #	if Input.is_action_just_pressed("ActionA"):
 #		wantstojump = true
 #		actiontimer.start()
@@ -206,10 +227,10 @@ func attack():
 	if can_attack:
 		match weaponNumber:
 				0:
-					print("We are number one!")
-					
+					#print("We are number one!")
+					pass
 				1:
-					print("Two are better than one!")
+					#print("Two are better than one!")
 					can_attack = false
 					weaponcarriedA.get_node("Hitbox/CollisionShape2D").disabled = false
 					if !gothit:
@@ -222,7 +243,7 @@ func attack():
 					
 					#cooldown.start()
 				2:
-					print("Oh snap! It's a string!")
+					#print("Oh snap! It's a string!")
 					emit_signal("rangeAttack", name)
 					durability -= 1
 					checkdurability()
@@ -289,3 +310,11 @@ func end_attack():
 func _on_Knockbackevent_timeout():
 	knockbackevent = false
 	pass # Replace with function body.
+
+func reposition_sword():
+	if direction: #right
+		weaponcarriedA.position = Vector2(-23,-8)
+		weaponcarriedA.flip_h = true
+	else: #left
+		weaponcarriedA.position = Vector2(23,-8)
+		weaponcarriedA.flip_h = false

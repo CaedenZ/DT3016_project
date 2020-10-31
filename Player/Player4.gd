@@ -92,13 +92,23 @@ func _physics_process(delta):
 
 
 	if Input.is_action_just_pressed("Left_D"):
-		direction *= -1
-		sprite.flip_h = !sprite.flip_h
-#	elif Input.is_action_pressed("Left_A"):
-#		direction = 1
-#		sprite.flip_h = false
-	#else:
-		#direction = 0
+		if direction == 1:
+			direction = -1
+			sprite.flip_h = !sprite.flip_h
+			print("change direction")
+		else:
+			#do action
+			attack()
+			print("attack")
+	elif Input.is_action_just_pressed("Right_D"):
+		if direction == -1:
+			direction = 1
+			sprite.flip_h = !sprite.flip_h
+			print("change direction")
+		else:
+			#do action
+			attack()
+			print("attack")
 	if Input.is_action_just_pressed("Jump_D"):
 		var new_particles = jumpPart.instance()
 		new_particles.emitting = true
@@ -120,15 +130,18 @@ func _physics_process(delta):
 				new_particles.position = position
 				var currentscene = get_tree().current_scene
 				currentscene.add_child(new_particles)
-				
 	if Input.is_action_just_released("Jump_D"):
+		var new_particles = jumpPart.instance()
 		if !is_on_floor():
 			if can_attack and !gothit:
 				animationplayer.play("fall")
 			if velocity.y < 0:
 				velocity.y *= 0.5
-	if Input.is_action_just_pressed("Action_D"):
-		attack()
+				new_particles.position = position
+				var currentscene = get_tree().current_scene
+				currentscene.add_child(new_particles)
+#	if Input.is_action_just_pressed("Action_A"):
+#		attack()
 #	if Input.is_action_just_pressed("ActionA"):
 #		wantstojump = true
 #		actiontimer.start()
@@ -206,10 +219,10 @@ func attack():
 	if can_attack:
 		match weaponNumber:
 				0:
-					print("We are number one!")
-					
+					#print("We are number one!")
+					pass
 				1:
-					print("Two are better than one!")
+					#print("Two are better than one!")
 					can_attack = false
 					weaponcarriedA.get_node("Hitbox/CollisionShape2D").disabled = false
 					if !gothit:
@@ -222,7 +235,7 @@ func attack():
 					
 					#cooldown.start()
 				2:
-					print("Oh snap! It's a string!")
+					#print("Oh snap! It's a string!")
 					emit_signal("rangeAttack", name)
 					durability -= 1
 					checkdurability()

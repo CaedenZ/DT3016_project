@@ -81,10 +81,10 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ true, false ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("WeaponA:position")
@@ -96,19 +96,7 @@ tracks/6/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ Vector2( -25.0849, -7.96177 ), Vector2( 21.3626, -9.0855 ) ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("WeaponA:rotation_degrees")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 7.05455, 97.702 ]
+"values": [ Vector2( -23, -8 ), Vector2( 23, -8 ) ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -201,19 +189,7 @@ tracks/6/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ Vector2( 22.4863, -7.96177 ), Vector2( -26.5074, -5.86714 ) ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("WeaponA:rotation_degrees")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ -8.40464, 7.83257 ]
+"values": [ Vector2( 23, -8 ), Vector2( -23, -8 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -417,9 +393,7 @@ collide_with_bodies = false
 
 [node name="WeaponA" parent="." instance=ExtResource( 3 )]
 visible = false
-position = Vector2( -25.0849, -7.96177 )
-rotation = 0.123125
-flip_h = true
+position = Vector2( 23, -8 )
 
 [node name="Hitbox" parent="WeaponA" index="0"]
 position = Vector2( -3.19525, 0.186446 )
