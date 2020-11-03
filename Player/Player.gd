@@ -199,7 +199,13 @@ func _physics_process(delta):
 
 
 func pickup():
-	weaponNumber = randi() % 3 + 1
+	var random_number = randi() % 6 + 1
+	if random_number > 4:
+		weaponNumber = 1
+	elif random_number > 3:
+		weaponNumber = 2
+	else:
+		weaponNumber = random_number
 	print(weaponNumber)
 	itemlabel.text = str(weaponNumber)
 	if weaponNumber == 0:
