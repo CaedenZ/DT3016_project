@@ -68,7 +68,7 @@ position = Vector2( 0, 1 )
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( 131083, 8, 0, 196611, 7, 0, 196612, 7, 0, 196624, 7, 0, 196625, 7, 0, 196626, 7, 0, 196627, 7, 0, 196635, 8, 0, 196637, 8, 0, 327704, 7, 0, 327705, 7, 0, 393225, 8, 0, 393228, 6, 0, 524287, 7, 0, 458752, 7, 0, 458753, 7, 0, 458781, 7, 0, 458782, 7, 0, 524309, 8, 0, 720890, 6, 0, 655366, 8, 0, 655387, 8, 0, 655389, 6, 0, 786441, 7, 0, 786442, 7, 0, 786455, 7, 0, 786456, 7, 0, 786457, 7, 0, 851981, 7, 0, 851982, 7, 0, 983046, 8, 0, 983047, 8, 0, 983057, 8, 0, 983058, 8, 0, 1048600, 8, 0, 1179648, 1, 0, 1179649, 1, 0, 1179650, 1, 0, 1179651, 2, 0, 1179657, 0, 0, 1179658, 1, 0, 1179659, 1, 0, 1179660, 1, 0, 1179661, 1, 0, 1179662, 0, 0, 1179663, 1, 0, 1179664, 1, 0, 1179665, 2, 0, 1179670, 7, 0, 1179671, 7, 0, 1179672, 7, 0, 1179673, 7, 0, 1179674, 7, 0, 1179675, 7, 0, 1179676, 0, 0, 1179677, 1, 0, 1179678, 1, 0, 1179679, 1, 0, 1179680, 1, 0 )
+tile_data = PoolIntArray( -65536, 1, 0, -65535, 1, 0, -65534, 1, 0, -65533, 1, 0, -65532, -1610612736, 0, -65526, 0, 0, -65525, 1, 0, -65524, 1, 0, -65523, 1, 0, -65522, 2, 0, -65519, 0, 0, -65518, 1, 0, -65517, 1, 0, -65516, 2, 0, -65510, 0, 0, -65509, 1, 0, -65508, 1, 0, -65507, 1, 0, -65506, 1, 0, -65505, 1, 0, 0, -1073741820, 0, 1, -1073741820, 0, 2, 1610612739, 0, 3, -1073741820, 0, 4, 5, 0, 10, 3, 0, 11, -1073741820, 0, 12, -1073741820, 0, 13, -1073741820, 0, 14, 1610612739, 0, 17, 1610612741, 0, 18, -1073741820, 0, 19, -1073741820, 0, 20, 5, 0, 26, 1610612738, 0, 27, 1610612737, 0, 28, 3, 0, 29, 4, 0, 30, 1610612741, 0, 31, -1073741820, 0, 65536, 1610612740, 0, 65537, 1610612740, 0, 65538, 1610612739, 0, 65539, 1610612737, 0, 65540, 1610612736, 0, 65546, 3, 0, 65547, 1610612740, 0, 65548, 1610612740, 0, 65549, 1610612740, 0, 65550, 1610612739, 0, 65553, 1610612741, 0, 65554, 1610612740, 0, 65555, 1610612740, 0, 65556, 5, 0, 65564, 1610612738, 0, 65565, 1610612737, 0, 65566, 1610612741, 0, 65567, -1073741820, 0, 131072, 1610612737, 0, 131073, 1610612737, 0, 131074, 1610612736, 0, 131082, 3, 0, 131083, 1610612740, 0, 131084, 1610612740, 0, 131085, 1610612740, 0, 131086, 1610612739, 0, 131089, 1610612741, 0, 131090, 1610612740, 0, 131091, 1610612740, 0, 131092, 5, 0, 131102, 3, 0, 131103, -1073741820, 0, 131104, 5, 0, 196618, -1073741824, 0, 196619, -1073741821, 0, 196620, -1073741821, 0, 196621, -1073741821, 0, 196622, 1610612736, 0, 196625, 1610612738, 0, 196626, -1073741821, 0, 196627, -1073741821, 0, 196628, 1610612736, 0, 196638, 3, 0, 196639, -1073741820, 0, 196640, 5, 0, 262146, 7, 0, 262147, 7, 0, 262168, 7, 0, 262169, 7, 0, 262170, 7, 0, 262174, 1610612738, 0, 262175, 1610612737, 0, 262176, -1610612734, 0, 393228, 6, 0, 393229, 7, 0, 393230, 7, 0, 393231, 7, 0, 393232, 7, 0, 393233, 7, 0, 524287, 7, 0, 458752, 7, 0, 458753, 7, 0, 458754, 7, 0, 458755, 7, 0, 458779, 7, 0, 458780, 7, 0, 458781, 7, 0, 458782, 7, 0, 589823, 0, 0, 524288, -1610612736, 0, 524295, 8, 0, 524296, 8, 0, 524310, 8, 0, 524311, 8, 0, 524319, 0, 0, 524320, 2, 0, 655359, 3, 0, 589824, 1610612739, 0, 589855, 1610612741, 0, 589856, 5, 0, 720895, 3, 0, 655360, 5, 0, 655391, 1610612741, 0, 655392, 5, 0, 786431, 3, 0, 720896, 5, 0, 720927, 3, 0, 720928, 5, 0, 851967, 3, 0, 786432, 5, 0, 786441, 7, 0, 786442, 7, 0, 786443, 7, 0, 786451, 7, 0, 786452, 7, 0, 786453, 7, 0, 786463, 3, 0, 786464, 5, 0, 917503, 3, 0, 851968, 5, 0, 851999, -1073741823, 0, 852000, 5, 0, 983039, 3, 0, 917504, -1610612735, 0, 917535, -1073741823, 0, 917536, 5, 0, 1048575, -1073741824, 0, 983040, -1610612734, 0, 983046, 8, 0, 983047, 8, 0, 983062, 8, 0, 983063, 8, 0, 983071, -1073741824, 0, 983072, -1610612734, 0, 1179648, 1, 0, 1179649, 1, 0, 1179650, 1, 0, 1179651, 1, 0, 1179652, 2, 0, 1179657, 0, 0, 1179658, 1, 0, 1179659, 1, 0, 1179660, 1, 0, 1179661, 1, 0, 1179662, 2, 0, 1179665, -1073741822, 0, 1179666, -1073741819, 0, 1179667, 1, 0, 1179668, 1, 0, 1179669, 2, 0, 1179674, 0, 0, 1179675, 1, 0, 1179676, 1, 0, 1179677, 1, 0, 1179678, 1, 0, 1179679, 1, 0, 1179680, 1, 0 )
 
 [node name="Node" type="Node" parent="."]
 
@@ -83,7 +83,7 @@ scale = Vector2( 1.36851, 1.07385 )
 texture = ExtResource( 11 )
 
 [node name="Plant7" type="Sprite" parent="Node"]
-position = Vector2( 635.952, 102.149 )
+position = Vector2( 855.669, 133.051 )
 scale = Vector2( 1.36851, 1.07385 )
 texture = ExtResource( 11 )
 
@@ -92,20 +92,10 @@ position = Vector2( 65.6475, 555.586 )
 scale = Vector2( 1.59349, 1.6961 )
 texture = ExtResource( 11 )
 
-[node name="Plant12" type="Sprite" parent="Node"]
-position = Vector2( 730.369, 585.021 )
-scale = Vector2( 0.832217, 0.885074 )
-texture = ExtResource( 11 )
-
-[node name="Plant9" type="Sprite" parent="Node"]
-position = Vector2( 831.29, 577.049 )
-scale = Vector2( 1.85308, 1.63407 )
-texture = ExtResource( 11 )
-
 [node name="Plant10" type="Sprite" parent="Node"]
 modulate = Color( 0.760784, 1, 0.0980392, 1 )
 material = SubResource( 1 )
-position = Vector2( 951.768, 563.918 )
+position = Vector2( 966.055, 563.918 )
 scale = Vector2( 2.87012, 2.57569 )
 texture = ExtResource( 11 )
 
@@ -119,14 +109,21 @@ texture = ExtResource( 11 )
 [node name="Plant13" type="Sprite" parent="Node"]
 modulate = Color( 0.862745, 1, 0.0784314, 1 )
 material = SubResource( 2 )
-position = Vector2( 3.3071, 437.326 )
+position = Vector2( 595.755, 316.164 )
 scale = Vector2( 2.13445, 1.71569 )
+texture = ExtResource( 11 )
+
+[node name="Plant18" type="Sprite" parent="Node"]
+modulate = Color( 0.862745, 1, 0.0784314, 1 )
+material = SubResource( 2 )
+position = Vector2( 22.0159, 231.528 )
+scale = Vector2( 1.29445, 1.71569 )
 texture = ExtResource( 11 )
 
 [node name="Plant15" type="Sprite" parent="Node"]
 modulate = Color( 0.862745, 1, 0.0784314, 1 )
 material = SubResource( 2 )
-position = Vector2( 30.5906, 458.772 )
+position = Vector2( 554.998, 610.85 )
 scale = Vector2( 2.13445, 1.71569 )
 texture = ExtResource( 11 )
 offset = Vector2( -12.7825, -12.5 )
@@ -150,33 +147,33 @@ offset = Vector2( -12.7825, -12.5 )
 [node name="Plant14" type="Sprite" parent="Node"]
 modulate = Color( 0.862745, 1, 0.0784314, 1 )
 material = SubResource( 2 )
-position = Vector2( 993.845, 565.112 )
+position = Vector2( 500.153, 586.837 )
 scale = Vector2( 2.13445, 1.71569 )
 texture = ExtResource( 11 )
 
 [node name="Plant3" type="Sprite" parent="Node"]
-position = Vector2( 586.004, 316.721 )
+position = Vector2( 463.143, 556.45 )
 scale = Vector2( 1.65777, 1.66782 )
 texture = ExtResource( 11 )
 
-[node name="Rock" type="Sprite" parent="."]
-position = Vector2( 261.805, 323.283 )
-scale = Vector2( 1.5, 1.5 )
+[node name="Rock5" type="Sprite" parent="."]
+position = Vector2( 30.8842, 558.653 )
+scale = Vector2( 2.35806, 2.425 )
 texture = ExtResource( 12 )
 
-[node name="Rock3" type="Sprite" parent="Rock"]
-position = Vector2( 359.249, 49.6757 )
-scale = Vector2( 1.48884, 1.54116 )
+[node name="Rock4" type="Sprite" parent="Rock5"]
+position = Vector2( 220.579, -148.934 )
+scale = Vector2( 0.878884, 0.755293 )
 texture = ExtResource( 12 )
 
-[node name="Rock4" type="Sprite" parent="Rock"]
-position = Vector2( -149.185, 157.907 )
-scale = Vector2( 1.57204, 1.61667 )
+[node name="Rock3" type="Sprite" parent="Rock5"]
+position = Vector2( 369.071, 1.72482 )
+scale = Vector2( 0.947075, 0.953293 )
 texture = ExtResource( 12 )
 
-[node name="Rock5" type="Sprite" parent="Rock"]
-position = Vector2( 335.978, 168.259 )
-scale = Vector2( 1.6053, 1.93007 )
+[node name="Rock5" type="Sprite" parent="Rock5"]
+position = Vector2( 35.4643, -136.777 )
+scale = Vector2( 0.947075, 0.953293 )
 texture = ExtResource( 12 )
 
 [node name="Plant1" type="Sprite" parent="."]
@@ -189,44 +186,40 @@ position = Vector2( 383.194, 68.2393 )
 texture = ExtResource( 14 )
 
 [node name="Plant6" type="Sprite" parent="Plant1"]
-position = Vector2( 207.235, -23.6962 )
+position = Vector2( 460.278, 22.5534 )
 texture = ExtResource( 14 )
 
 [node name="Plant7" type="Sprite" parent="Plant1"]
-position = Vector2( 333.192, -89.5023 )
+position = Vector2( 195.491, 20.2771 )
 texture = ExtResource( 14 )
 
-[node name="Fruit" type="Sprite" parent="."]
-position = Vector2( 188.151, 123.589 )
+[node name="Background14" type="Sprite" parent="."]
+position = Vector2( 424.218, 586.604 )
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 13 )
 
-[node name="Background5" type="Sprite" parent="Fruit"]
-position = Vector2( -14.7392, -0.732616 )
+[node name="Background5" type="Sprite" parent="Background14"]
+position = Vector2( -58.8827, -203.054 )
 texture = ExtResource( 13 )
 
-[node name="Background8" type="Sprite" parent="Fruit"]
-position = Vector2( -60.7425, 85.4633 )
+[node name="Background8" type="Sprite" parent="Background14"]
+position = Vector2( -218.121, -223.214 )
 texture = ExtResource( 13 )
 
-[node name="Background9" type="Sprite" parent="Fruit"]
-position = Vector2( 427.467, 44.593 )
+[node name="Background9" type="Sprite" parent="Background14"]
+position = Vector2( 384.124, -223.697 )
 texture = ExtResource( 13 )
 
-[node name="Background10" type="Sprite" parent="Fruit"]
-position = Vector2( 217.7, 148.879 )
+[node name="Background10" type="Sprite" parent="Background14"]
+position = Vector2( 60.322, -159.798 )
 texture = ExtResource( 13 )
 
-[node name="Background12" type="Sprite" parent="Fruit"]
-position = Vector2( 445.757, 192.797 )
+[node name="Background12" type="Sprite" parent="Background14"]
+position = Vector2( 215.888, -52.9131 )
 texture = ExtResource( 13 )
 
-[node name="Background13" type="Sprite" parent="Fruit"]
-position = Vector2( 518.777, 288.57 )
-texture = ExtResource( 13 )
-
-[node name="Background14" type="Sprite" parent="Fruit"]
-position = Vector2( 157.378, 308.677 )
+[node name="Background13" type="Sprite" parent="Background14"]
+position = Vector2( 361.399, -20.107 )
 texture = ExtResource( 13 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
@@ -261,40 +254,40 @@ scale = Vector2( 0.03, 0.03 )
 [node name="Stars" type="Node2D" parent="."]
 
 [node name="Background8" type="Sprite" parent="Stars"]
-position = Vector2( 666.314, 194.74 )
+position = Vector2( 619.486, 410.626 )
 rotation = 1.74845e-07
 scale = Vector2( 1.28073, 1.19442 )
 texture = ExtResource( 10 )
 offset = Vector2( -26.5, -39.3501 )
 
 [node name="Background5" type="Sprite" parent="Stars"]
-position = Vector2( 378.333, 280.238 )
+position = Vector2( 279.914, 566.764 )
 scale = Vector2( 1.28073, 1.19442 )
 texture = ExtResource( 10 )
 offset = Vector2( -26.5, -39.3501 )
 
 [node name="Background6" type="Sprite" parent="Stars"]
-position = Vector2( 283.117, 567.557 )
+position = Vector2( 363.281, 484.218 )
 scale = Vector2( 1.28073, 1.19442 )
 texture = ExtResource( 10 )
 offset = Vector2( -26.5, -39.3501 )
 
 [node name="Background7" type="Sprite" parent="Stars"]
-position = Vector2( 69.3046, 327.172 )
+position = Vector2( 111.371, 325.585 )
 rotation = 1.74845e-07
 scale = Vector2( 1.28073, 1.19442 )
 texture = ExtResource( 10 )
 offset = Vector2( -26.5, -39.3501 )
 
 [node name="Background9" type="Sprite" parent="Stars"]
-position = Vector2( 870.471, 486.647 )
+position = Vector2( 945.42, 326.285 )
 rotation = 1.74845e-07
 scale = Vector2( 1.28073, 1.19442 )
 texture = ExtResource( 10 )
 offset = Vector2( -26.5, -39.3501 )
 
 [node name="Background10" type="Sprite" parent="Stars"]
-position = Vector2( 664.58, 566.87 )
+position = Vector2( 486.578, 196.353 )
 rotation = 1.74845e-07
 scale = Vector2( 1.28073, 1.19442 )
 texture = ExtResource( 10 )
@@ -308,28 +301,40 @@ texture = ExtResource( 10 )
 offset = Vector2( -26.5, -39.3501 )
 
 [node name="Background12" type="Sprite" parent="Stars"]
-position = Vector2( 38.4792, 539.863 )
+position = Vector2( 990.336, 517.202 )
 rotation = 1.74845e-07
 scale = Vector2( 1.28073, 1.19442 )
 texture = ExtResource( 10 )
 offset = Vector2( -26.5, -39.3501 )
 
 [node name="Background13" type="Sprite" parent="Stars"]
-position = Vector2( 587.591, 197.799 )
+position = Vector2( 160.662, 325.779 )
 rotation = 1.74845e-07
 scale = Vector2( 1.28073, 1.19442 )
 texture = ExtResource( 10 )
 offset = Vector2( -26.5, -39.3501 )
 
 [node name="Background14" type="Sprite" parent="Stars"]
-position = Vector2( 969.094, 211.53 )
+position = Vector2( 975.591, 159.534 )
 rotation = 1.74846e-07
 scale = Vector2( 1.58024, 1.65232 )
 texture = ExtResource( 10 )
 offset = Vector2( -26.5, -39.3501 )
 
 [node name="Stars" type="Sprite" parent="Stars"]
-position = Vector2( 191.099, 195.69 )
+position = Vector2( 548.366, 77.477 )
+scale = Vector2( 1.28073, 1.19442 )
+texture = ExtResource( 10 )
+offset = Vector2( -26.5, -39.3501 )
+
+[node name="Stars2" type="Sprite" parent="Stars"]
+position = Vector2( 165.28, 135.385 )
+scale = Vector2( 1.28073, 1.19442 )
+texture = ExtResource( 10 )
+offset = Vector2( -26.5, -39.3501 )
+
+[node name="Stars3" type="Sprite" parent="Stars"]
+position = Vector2( 621.42, 197.748 )
 scale = Vector2( 1.28073, 1.19442 )
 texture = ExtResource( 10 )
 offset = Vector2( -26.5, -39.3501 )
