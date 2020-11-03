@@ -382,16 +382,16 @@ autoplay = true
 [node name="ItemSpawn" type="Node2D" parent="."]
 
 [node name="Location1" type="Node2D" parent="ItemSpawn"]
-position = Vector2( 479.029, 298.674 )
+position = Vector2( 510.798, 33.8478 )
 
 [node name="Location2" type="Node2D" parent="ItemSpawn"]
-position = Vector2( 919.029, 58.6735 )
+position = Vector2( 518.225, 303.128 )
 
 [node name="Location3" type="Node2D" parent="ItemSpawn"]
-position = Vector2( 191.029, 482.674 )
+position = Vector2( 123.295, 116.501 )
 
 [node name="Location4" type="Node2D" parent="ItemSpawn"]
-position = Vector2( 623.029, 306.674 )
+position = Vector2( 831.325, 116.712 )
 [connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]
 [connection signal="timeout" from="ItemTimer" to="." method="_on_ItemTimer_timeout"]
 
