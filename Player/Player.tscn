@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Materials/Free/Main Characters/Mask Dude/spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
@@ -308,7 +308,10 @@ extents = Vector2( 16, 16 )
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 16, 16 )
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="CircleShape2D" id=11]
+radius = 116.14
+
+[sub_resource type="DynamicFont" id=12]
 size = 32
 font_data = ExtResource( 7 )
 
@@ -341,6 +344,13 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource( 10 )
+
+[node name="PlayerDetectBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectBox"]
+shape = SubResource( 11 )
 
 [node name="DashInputTimer" type="Timer" parent="."]
 process_mode = 0
@@ -432,12 +442,16 @@ margin_left = -50.3518
 margin_top = -47.2141
 margin_right = -8.3518
 margin_bottom = -17.2141
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 12 )
 text = "12X"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="passbombtimer" type="Timer" parent="."]
+one_shot = true
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[connection signal="body_entered" from="PlayerDetectBox" to="." method="_on_PlayerDetectBox_body_entered"]
 [connection signal="timeout" from="DashInputTimer" to="." method="_on_DashTimer_timeout"]
 [connection signal="timeout" from="DashDurationTimer" to="." method="_on_DashDurationTimer_timeout"]
 [connection signal="timeout" from="DashCooldown" to="." method="_on_DashCooldown_timeout"]
@@ -447,6 +461,7 @@ __meta__ = {
 [connection signal="timeout" from="WeaponC/SecondStateTimer" to="." method="_on_SecondStateTimer_timeout"]
 [connection signal="timeout" from="WeaponC/ThirdStateTimer" to="." method="_on_ThirdStateTimer_timeout"]
 [connection signal="timeout" from="WeaponC/BlinkTimer" to="." method="_on_BlinkTimer_timeout"]
+[connection signal="timeout" from="passbombtimer" to="." method="_on_passbombtimer_timeout"]
 
 [editable path="WeaponA"]
 

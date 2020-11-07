@@ -34,7 +34,8 @@ var knockbackevent := false
 var durability := 0
 var candoublejump := false
 var max_hp = 12
-
+var timerstatus = 1
+var canpass = true
 var leftbutton = "Left_A"
 var rightbutton = "Right_A"
 var jumpbutton = "Jump_A"
@@ -56,6 +57,8 @@ onready var bombtimer1 = $WeaponC/FirstStateTimer
 onready var bombtimer2 = $WeaponC/SecondStateTimer
 onready var bombtimer3 = $WeaponC/ThirdStateTimer
 
+onready var passtimer = $passbombtimer
+
 onready var bombblinkTimer = $WeaponC/BlinkTimer
 
 onready var raycast = $RayCast2D
@@ -70,6 +73,7 @@ onready var lifecounter = $LifeManager/Lives
 signal update_life_ui(playerid)
 signal diedpermanently(playerid)
 signal onExplosion(playerid)
+signal passbomb(playerid,timercount)
 
 func _ready():
 	randomize()
@@ -232,6 +236,7 @@ func pickup():
 		weaponcarriedA.hide()
 		bombtimer1.start()
 		bombblinkTimer.start()
+		bombblinkTimer.wait_time = 1
 
 func attack():
 	if can_attack:
@@ -355,10 +360,12 @@ func reposition_sword():
 func _on_FirstStateTimer_timeout():
 	bombblinkTimer.wait_time = 0.5
 	bombtimer2.start()
+	timerstatus = 2
 
 func _on_SecondStateTimer_timeout():
 	bombblinkTimer.wait_time = 0.1
 	bombtimer3.start()
+	timerstatus = 3
 
 
 func _on_ThirdStateTimer_timeout():
@@ -366,6 +373,7 @@ func _on_ThirdStateTimer_timeout():
 	bombblinkTimer.stop()
 	emit_signal("onExplosion", name)
 	weaponcarriedC.hide()
+	timerstatus = 1
 
 
 func _on_BlinkTimer_timeout():
@@ -377,6 +385,21 @@ func _on_BlinkTimer_timeout():
 
 func _on_Hitbox_body_entered(body):
 	if body.is_in_group("bullet"):
-		body.linear_velocity = Vector2(direction * 600, -300)
+		body.linear_velocity = Vector2(direction * 600, -300)\
 		emit_signal("hitwatermelon", name, body)
-		
+
+
+func _on_PlayerDetectBox_body_entered(body):
+	print(body.name)
+	if canpass:
+		if weaponcarriedC.visible == true:
+			if body.name != name :
+				emit_signal("passbomb",body.name,timerstatus)
+				weaponcarriedC.visible = false
+				bombtimer1.stop()
+				bombtimer2.stop()
+				bombtimer3.stop()
+
+
+func _on_passbombtimer_timeout():
+	canpass = true
