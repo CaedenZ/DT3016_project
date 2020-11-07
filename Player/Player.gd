@@ -40,6 +40,7 @@ var leftbutton = "Left_A"
 var rightbutton = "Right_A"
 var jumpbutton = "Jump_A"
 signal rangeAttack(playerid)
+signal hitwatermelon(playerid, watermelon)
 
 onready var dashtimer = $DashInputTimer
 onready var dashdurationtimer = $DashDurationTimer
@@ -384,8 +385,8 @@ func _on_BlinkTimer_timeout():
 
 func _on_Hitbox_body_entered(body):
 	if body.is_in_group("bullet"):
-		body.linear_velocity = Vector2(direction * 600, -300)
-		print("got hit bullet")
+		body.linear_velocity = Vector2(direction * 600, -300)\
+		emit_signal("hitwatermelon", name, body)
 
 
 func _on_PlayerDetectBox_body_entered(body):

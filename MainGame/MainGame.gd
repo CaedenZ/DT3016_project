@@ -39,6 +39,10 @@ func _ready():
 	player2.connect("passbomb", self, "passbomb")
 	player3.connect("passbomb", self, "passbomb")
 	player4.connect("passbomb", self, "passbomb ")
+	player.connect("hitwatermelon", self, "changewatermelonmask")
+	player2.connect("hitwatermelon", self, "changewatermelonmask")
+	player3.connect("hitwatermelon", self, "changewatermelonmask")
+	player4.connect("hitwatermelon", self, "changewatermelonmask")
 	count = 0
 	gameTimer = $GameTimer
 	for child in Globalscript.Players_array:
@@ -58,6 +62,21 @@ func _ready():
 func _physics_process(delta):
 	if Input.is_action_just_pressed("restart"):
 		get_tree().change_scene("res://MainGame/MainGame.tscn")
+
+func changewatermelonmask(playerid, watermelon):
+	for i in range(4, 8):
+		if !watermelon.get_child(0).get_collision_mask_bit(i):
+			watermelon.get_child(0).set_collision_mask_bit(i, true)
+			break
+	match playerid:
+		"Player":
+			watermelon.get_child(0).set_collision_mask_bit(4,false)
+		"Player2":
+			watermelon.get_child(0).set_collision_mask_bit(5,false)
+		"Player3":
+			watermelon.get_child(0).set_collision_mask_bit(6,false)
+		"Player4":
+			watermelon.get_child(0).set_collision_mask_bit(7,false)
 
 func diepermanently(playerid):
 	match playerid:
