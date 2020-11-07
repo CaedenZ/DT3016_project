@@ -15,6 +15,8 @@ onready var itemspawn = $ItemSpawn
 onready var bulletIns = preload("res://Items/Bullet.tscn")
 var confetti = preload("res://Items/Confetti.tscn")
 
+onready var explosionIns = preload("res://Items/Explosion.tscn")
+
 func _ready():
 	player.connect("rangeAttack", self, "generateBullet")
 	player2.connect("rangeAttack", self, "generateBullet")
@@ -29,6 +31,10 @@ func _ready():
 	player2.connect("diedpermanently", self, "diepermanently")
 	player3.connect("diedpermanently", self, "diepermanently")
 	player4.connect("diedpermanently", self, "diepermanently")
+	player.connect("onExplosion", self, "generateExplosion")
+	player2.connect("onExplosion", self, "generateExplosion")
+	player3.connect("onExplosion", self, "generateExplosion")
+	player4.connect("onExplosion", self, "generateExplosion ")
 	count = 0
 	gameTimer = $GameTimer
 	for child in Globalscript.Players_array:
@@ -107,6 +113,18 @@ func generateBullet(playerid):
 		"Player4":
 			bulletShoot(playerid,player4.global_position,player4.direction)
 
+func generateExplosion(playerid):
+	print("Explosion")
+	match playerid:
+		"Player":
+			explosion(playerid,player.global_position)
+		"Player2":
+			explosion(playerid,player2.global_position)
+		"Player3":
+			explosion(playerid,player3.global_position)
+		"Player4":
+			explosion(playerid,player4.global_position)
+			
 func bulletShoot(playerid,position,direction):
 	var bullet = bulletIns.instance()
 	var animationPlayer = bullet.get_child(0)
@@ -124,7 +142,13 @@ func bulletShoot(playerid,position,direction):
 	bullet.position = position
 	bullet.linear_velocity = Vector2(direction * 600, -100)
 	
-
+func explosion(playerid,position):
+	
+	var explosion = explosionIns.instance()
+	var currentscene = get_tree().current_scene
+	currentscene.add_child(explosion)
+	explosion.position = position
+	
 func _on_GameTimer_timeout():
 	print("Time 20s")
 

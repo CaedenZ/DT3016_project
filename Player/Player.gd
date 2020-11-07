@@ -61,10 +61,10 @@ onready var jumpSound = $Jump
 onready var heartsprite = $LifeManager/HP
 onready var lifecounter = $LifeManager/Lives
 
-onready var explosionIns = preload("res://Items/Explosion.tscn")
 
 signal update_life_ui(playerid)
 signal diedpermanently(playerid)
+signal onExplosion(playerid)
 
 func _ready():
 	randomize()
@@ -252,6 +252,9 @@ func attack():
 					emit_signal("rangeAttack", name)
 					durability -= 1
 					checkdurability()
+					
+	if weaponcarriedC.visible == true:
+		print("pass")
 
 func checkdurability():
 	if durability <= 0:
@@ -356,8 +359,7 @@ func _on_SecondStateTimer_timeout():
 func _on_ThirdStateTimer_timeout():
 	bombblinkTimer.wait_time = 1
 	bombblinkTimer.stop()
-	var explosion = explosionIns.instance()
-	add_child(explosion)
+	emit_signal("onExplosion", name)
 	weaponcarriedC.hide()
 
 
