@@ -31,8 +31,7 @@ var knockback_dir := 1
 var knockbackevent := false
 var durability := 0
 var candoublejump := false
-var max_hp = 4
-var lives = 3
+var max_hp = 12
 signal rangeAttack(playerid)
 
 onready var dashtimer = $DashInputTimer
@@ -290,20 +289,16 @@ func take_damage(damage):
 #		position.y = 200
 
 func update_heartsprite():
-	if lives > 0:
+	if max_hp > 0:
 		heartsprite.frame += 1
 		max_hp -= 1
-		print("max_hp is " + str(max_hp))
-		if max_hp <= 0:
-			lives -= 1
-			update_lifecounter()
+		update_counter()
 
-func update_lifecounter():
-	lifecounter.text = "X" + str(lives)
-	if lives > 0:
+func update_counter():
+	lifecounter.text = "X" + str(max_hp)
+	if max_hp % 4 == 0 and max_hp > 0:
 		heartsprite.frame = 0
-		max_hp = 4
-	else:
+	elif max_hp == 0:
 		emit_signal("diedpermanently", name)
 
 func _on_DashTimer_timeout():

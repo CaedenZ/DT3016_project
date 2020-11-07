@@ -1,14 +1,16 @@
 extends KinematicBody2D
 
-
 const MAXSPEED = 165
+const SPEED1 = 165
+const SPEED2 = 265
+const SPEED3 = 365
 const DASHSPEED = 600
 const FLOOR_NORMAL = Vector2(0, -1)
 const GRAVITY = 20
 const MAX_JUMP_POWER = -600
 const JUMP_POWER = -400
 
-var speed := MAXSPEED
+var speed := SPEED1
 var direction := -1
 var velocity := Vector2.ZERO
 var jump_power := 0
@@ -31,8 +33,7 @@ var knockback_dir := 1
 var knockbackevent := false
 var durability := 0
 var candoublejump := false
-var max_hp = 4
-var lives = 3
+var max_hp = 12
 signal rangeAttack(playerid)
 
 onready var dashtimer = $DashInputTimer
@@ -290,28 +291,31 @@ func take_damage(damage):
 #		position.y = 200
 
 func update_heartsprite():
-	if lives > 0:
+	if max_hp > 0:
 		heartsprite.frame += 1
 		max_hp -= 1
-		print("max_hp is " + str(max_hp))
-		if max_hp <= 0:
-			lives -= 1
-			update_lifecounter()
-
-func update_lifecounter():
-	lifecounter.text = "X" + str(lives)
-	if lives > 0:
+		update_counter()
+		update_speed()
+		
+func update_counter():
+	lifecounter.text = "X" + str(max_hp)
+	if max_hp % 4 == 0 and max_hp > 0:
 		heartsprite.frame = 0
-		max_hp = 4
-	else:
+	elif max_hp == 0:
 		emit_signal("diedpermanently", name)
+
+func update_speed():
+	if max_hp <= 6 and max_hp > 2:
+		speed = SPEED2
+	elif max_hp <=2:
+		speed = SPEED3
 
 func _on_DashTimer_timeout():
 	wantstodash = false
 
 
 func _on_DashDurationTimer_timeout():
-	speed = MAXSPEED
+	update_speed()
 	dashing = false
 	dashoncooldown = true
 	knockback = false

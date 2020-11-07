@@ -426,17 +426,18 @@ stream = ExtResource( 4 )
 [node name="LifeManager" type="Node2D" parent="."]
 
 [node name="HP" type="Sprite" parent="LifeManager"]
-position = Vector2( 0, -30 )
+position = Vector2( 11.9055, -31.9843 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 6 )
 hframes = 5
 
 [node name="Lives" type="Label" parent="LifeManager"]
-margin_left = -37.8651
-margin_top = -47.8087
-margin_right = 2.13492
-margin_bottom = -17.8087
+margin_left = -50.3518
+margin_top = -47.2141
+margin_right = -8.3518
+margin_bottom = -17.2141
 custom_fonts/font = SubResource( 11 )
-text = "3X"
+text = "12X"
 __meta__ = {
 "_edit_use_anchors_": false
 }
