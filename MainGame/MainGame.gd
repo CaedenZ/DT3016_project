@@ -35,6 +35,10 @@ func _ready():
 	player2.connect("onExplosion", self, "generateExplosion")
 	player3.connect("onExplosion", self, "generateExplosion")
 	player4.connect("onExplosion", self, "generateExplosion ")
+	player.connect("passbomb", self, "passbomb")
+	player2.connect("passbomb", self, "passbomb")
+	player3.connect("passbomb", self, "passbomb")
+	player4.connect("passbomb", self, "passbomb ")
 	count = 0
 	gameTimer = $GameTimer
 	for child in Globalscript.Players_array:
@@ -100,6 +104,82 @@ func updateplayer(playerid):
 			var Confetti = confetti.instance()
 			add_child(Confetti)
 			Confetti.global_position = player4.global_position
+
+func passbomb(playerid,timercount):
+	print(timercount)
+	match playerid:
+		"Player":
+			player.canpass = false
+			player.weaponcarriedC.show()
+			player.passtimer.start()
+			player.timerstatus = timercount
+			match timercount:
+				1:
+					player.bombtimer1.start()
+					player.bombblinkTimer.start()
+					player.bombblinkTimer.wait_time = 1
+				2:
+					player.bombtimer2.start()
+					player.bombblinkTimer.start()
+					player.bombblinkTimer.wait_time = 0.5
+				3:
+					player.bombtimer3.start()
+					player.bombblinkTimer.start()
+					player.bombblinkTimer.wait_time = 0.1
+		"Player2":
+			player2.canpass = false
+			player2.weaponcarriedC.show()
+			player2.passtimer.start()
+			player2.timerstatus = timercount
+			match timercount:
+				1:
+					player2.bombtimer1.start()
+					player2.bombblinkTimer.start()
+					player2.bombblinkTimer.wait_time = 1
+				2:
+					player2.bombtimer2.start()
+					player2.bombblinkTimer.start()
+					player2.bombblinkTimer.wait_time = 0.5
+				3:
+					player2.bombtimer3.start()
+					player2.bombblinkTimer.start()
+					player2.bombblinkTimer.wait_time = 0.1
+		"Player3":
+			player3.canpass = false
+			player3.weaponcarriedC.show()
+			player3.passtimer.start()
+			player3.timerstatus = timercount
+			match timercount:
+				1:
+					player3.bombtimer1.start()
+					player3.bombblinkTimer.start()
+					player3.bombblinkTimer.wait_time = 1
+				2:
+					player3.bombtimer2.start()
+					player3.bombblinkTimer.start()
+					player3.bombblinkTimer.wait_time = 0.5
+				3:
+					player3.bombtimer3.start()
+					player3.bombblinkTimer.start()
+					player3.bombblinkTimer.wait_time = 0.1
+		"Player4":
+			player4.canpass = false
+			player4.weaponcarriedC.show()
+			player4.passtimer.start()
+			player4.timerstatus = timercount
+			match timercount:
+				1:
+					player4.bombtimer1.start()
+					player4.bombblinkTimer.start()
+					player4.bombblinkTimer.wait_time = 1
+				2:
+					player4.bombtimer2.start()
+					player4.bombblinkTimer.start()
+					player4.bombblinkTimer.wait_time = 0.5
+				3:
+					player4.bombtimer3.start()
+					player4.bombblinkTimer.start()
+					player4.bombblinkTimer.wait_time = 0.1
 
 func generateBullet(playerid):
 	print(playerid)
