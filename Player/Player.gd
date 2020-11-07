@@ -365,6 +365,8 @@ func _on_FirstStateTimer_timeout():
 func _on_SecondStateTimer_timeout():
 	bombblinkTimer.wait_time = 0.1
 	bombtimer3.start()
+	bombtimer1.stop()
+	bombtimer2.stop()
 	timerstatus = 3
 
 
@@ -373,7 +375,9 @@ func _on_ThirdStateTimer_timeout():
 	bombblinkTimer.stop()
 	emit_signal("onExplosion", name)
 	weaponcarriedC.hide()
-	timerstatus = 1
+	bombtimer1.stop()
+	bombtimer2.stop()
+	bombtimer3.stop()
 
 
 func _on_BlinkTimer_timeout():
