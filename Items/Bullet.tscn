@@ -105,7 +105,7 @@ texture = ExtResource( 1 )
 shape = SubResource( 4 )
 
 [node name="LifeTimer" type="Timer" parent="."]
-wait_time = 30.0
+wait_time = 10.0
 autostart = true
 [connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]

@@ -385,7 +385,7 @@ func _on_BlinkTimer_timeout():
 
 func _on_Hitbox_body_entered(body):
 	if body.is_in_group("bullet"):
-		body.linear_velocity = Vector2(direction * 600, -300)\
+		body.linear_velocity = Vector2(direction * 600, -300)
 		emit_signal("hitwatermelon", name, body)
 
 
