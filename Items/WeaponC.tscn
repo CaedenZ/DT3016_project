@@ -4,7 +4,7 @@
 
 [node name="WeaponC" type="Sprite"]
 position = Vector2( 7.95758, 1.94088 )
-scale = Vector2( 0.235296, 0.235296 )
+scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 1 )
 
 [node name="FirstStateTimer" type="Timer" parent="."]

@@ -15,5 +15,5 @@ func _ready():
 func _physics_process(delta):
 	frame += 1
 	frame += 1
-	if frame == 81:
+	if frame > 81:
 		queue_free()

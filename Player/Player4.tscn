@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Materials/Free/Main Characters/Virtual Guy/spritesheet.png" type="Texture" id=2]
-[ext_resource path="res://Player/Player4.gd" type="Script" id=3]
+[ext_resource path="res://Player/test4.gd" type="Script" id=3]
+[ext_resource path="res://Materials/Hearts/PNG/animated/border/heart_animated_2_grey.png" type="Texture" id=4]
 
 [node name="Player4" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
@@ -15,7 +16,10 @@ frame = 24
 collision_layer = 128
 
 [node name="Hitbox" parent="WeaponA" index="0"]
-collision_mask = 112
+collision_mask = 368
+
+[node name="HP" parent="LifeManager" index="0"]
+texture = ExtResource( 4 )
 
 [editable path="WeaponA"]
 

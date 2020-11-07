@@ -1,4 +1,4 @@
-extends Sprite
+extends "res://Player/Player.gd"
 
 
 # Declare member variables here. Examples:
@@ -8,11 +8,11 @@ extends Sprite
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
-	pass # Replace with function body.
+	leftbutton = "Left_C"
+	rightbutton = "Right_C"
+	jumpbutton = "Jump_C"
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-	
+#func _process(delta):
+#	pass

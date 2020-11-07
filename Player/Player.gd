@@ -34,6 +34,10 @@ var knockbackevent := false
 var durability := 0
 var candoublejump := false
 var max_hp = 12
+
+var leftbutton = "Left_A"
+var rightbutton = "Right_A"
+var jumpbutton = "Jump_A"
 signal rangeAttack(playerid)
 
 onready var dashtimer = $DashInputTimer
@@ -84,7 +88,7 @@ func _physics_process(delta):
 		stomped_on = false
 		
 
-	if Input.is_action_just_pressed("Left_A"):
+	if Input.is_action_just_pressed(leftbutton):
 		if direction == 1:
 			direction = -1
 			sprite.flip_h = !sprite.flip_h
@@ -96,7 +100,7 @@ func _physics_process(delta):
 			#do action
 			attack()
 			print("attack")
-	elif Input.is_action_just_pressed("Right_A"):
+	elif Input.is_action_just_pressed(rightbutton):
 		if direction == -1:
 			direction = 1
 			sprite.flip_h = !sprite.flip_h
@@ -109,7 +113,7 @@ func _physics_process(delta):
 			#do action
 			attack()
 			print("attack")
-	if Input.is_action_just_pressed("Jump_A"):
+	if Input.is_action_just_pressed(jumpbutton):
 		var new_particles = jumpPart.instance()
 		new_particles.emitting = true
 		if is_on_floor():
@@ -130,7 +134,7 @@ func _physics_process(delta):
 				new_particles.position = position
 				var currentscene = get_tree().current_scene
 				currentscene.add_child(new_particles)
-	if Input.is_action_just_released("Jump_A"):
+	if Input.is_action_just_released(jumpbutton):
 		var new_particles = jumpPart.instance()
 		if !is_on_floor():
 			if can_attack and !gothit:
@@ -238,12 +242,12 @@ func attack():
 					#print("Two are better than one!")
 					can_attack = false
 					weaponcarriedA.get_node("Hitbox/CollisionShape2D").disabled = false
-					if !gothit:
-						durability -= 1
-						if direction == 1:
-							animationplayer.play("attackright")
-						elif direction == -1:
-							animationplayer.play("attackleft")
+					#if !gothit:
+					durability -= 1
+					if direction == 1:
+						animationplayer.play("attackright")
+					elif direction == -1:
+						animationplayer.play("attackleft")
 						
 					
 					#cooldown.start()
@@ -366,3 +370,9 @@ func _on_BlinkTimer_timeout():
 		weaponcarriedC.modulate.a = 0.5
 	elif weaponcarriedC.modulate.a == 0.5:
 		weaponcarriedC.modulate.a = 1
+
+
+func _on_Hitbox_body_entered(body):
+	if body.is_in_group("bullet"):
+		body.linear_velocity = Vector2(direction * 600, -300)
+		print("got hit bullet")

@@ -95,7 +95,7 @@ collision_mask = 0
 shape = SubResource( 1 )
 
 [node name="ExtTile6" type="Sprite" parent="."]
-position = Vector2( 144, 80 )
+position = Vector2( 216, 80 )
 texture = ExtResource( 5 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="ExtTile6"]

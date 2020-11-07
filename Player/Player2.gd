@@ -1,14 +1,16 @@
 extends KinematicBody2D
 
-
 const MAXSPEED = 165
+const SPEED1 = 165
+const SPEED2 = 265
+const SPEED3 = 365
 const DASHSPEED = 600
 const FLOOR_NORMAL = Vector2(0, -1)
 const GRAVITY = 20
 const MAX_JUMP_POWER = -600
 const JUMP_POWER = -400
 
-var speed := MAXSPEED
+var speed := SPEED1
 var direction := -1
 var velocity := Vector2.ZERO
 var jump_power := 0
@@ -293,7 +295,8 @@ func update_heartsprite():
 		heartsprite.frame += 1
 		max_hp -= 1
 		update_counter()
-
+		update_speed()
+		
 func update_counter():
 	lifecounter.text = "X" + str(max_hp)
 	if max_hp % 4 == 0 and max_hp > 0:
@@ -301,12 +304,18 @@ func update_counter():
 	elif max_hp == 0:
 		emit_signal("diedpermanently", name)
 
+func update_speed():
+	if max_hp <= 6 and max_hp > 2:
+		speed = SPEED2
+	elif max_hp <=2:
+		speed = SPEED3
+
 func _on_DashTimer_timeout():
 	wantstodash = false
 
 
 func _on_DashDurationTimer_timeout():
-	speed = MAXSPEED
+	update_speed()
 	dashing = false
 	dashoncooldown = true
 	knockback = false
