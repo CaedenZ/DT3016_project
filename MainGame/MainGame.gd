@@ -12,8 +12,10 @@ onready var p3_lives = $Lives/P3_lives
 onready var p4_lives = $Lives/P4_lives
 onready var itembox = $ItemBox
 onready var itemspawn = $ItemSpawn
+onready var fps = $fps_label
 onready var bulletIns = preload("res://Items/Bullet.tscn")
 var confetti = preload("res://Items/Confetti.tscn")
+var deatheffect = preload("res://Items/Deatheffect.tscn")
 
 onready var explosionIns = preload("res://Items/Explosion.tscn")
 
@@ -62,6 +64,7 @@ func _ready():
 func _physics_process(delta):
 	if Input.is_action_just_pressed("restart"):
 		get_tree().change_scene("res://MainGame/MainGame.tscn")
+	fps.text = str(Engine.get_frames_per_second())
 
 func changewatermelonmask(playerid, watermelon):
 	for i in range(4, 8):
@@ -79,14 +82,20 @@ func changewatermelonmask(playerid, watermelon):
 			watermelon.get_child(0).set_collision_mask_bit(7,false)
 
 func diepermanently(playerid):
+	var Deatheffect = deatheffect.instance()
+	add_child(Deatheffect)
 	match playerid:
 		"Player":
+			Deatheffect.global_position = player.global_position
 			player.queue_free()
 		"Player2":
+			Deatheffect.global_position = player2.global_position
 			player2.queue_free()
 		"Player3":
+			Deatheffect.global_position = player3.global_position
 			player3.queue_free()
 		"Player4":
+			Deatheffect.global_position = player4.global_position
 			player4.queue_free()
 
 func updateplayerhealth(playerid):

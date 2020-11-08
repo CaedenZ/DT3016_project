@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Items/Confetti.gd" type="Script" id=1]
+[ext_resource path="res://Items/Deatheffect.gd" type="Script" id=1]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 0.942383, 0.143566, 0.143566, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
 
 [sub_resource type="ParticlesMaterial" id=3]
-emission_shape = 2
-emission_box_extents = Vector3( 1, 1, 1 )
 flag_disable_z = true
 direction = Vector3( 0, -1, 0 )
 spread = 30.0
@@ -15,10 +19,9 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 linear_accel = 100.0
 scale = 3.0
-hue_variation = 1.0
-hue_variation_random = 1.0
+color_ramp = SubResource( 2 )
 
-[node name="Confetti" type="Particles2D"]
+[node name="Deatheffect" type="Particles2D"]
 emitting = false
 amount = 60
 lifetime = 3.0

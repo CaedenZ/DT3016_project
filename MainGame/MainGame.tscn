@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Tilesets/NewMap.tres" type="TileSet" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://UI/ninja_frog.png" type="Texture" id=19]
 [ext_resource path="res://UI/pink_man.png" type="Texture" id=20]
 [ext_resource path="res://Materials/Iceland Theme.wav" type="AudioStream" id=21]
+[ext_resource path="res://fonts/compass-pro-v1.1/CompassPro.otf" type="DynamicFontData" id=22]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
@@ -29,6 +30,10 @@ light_mode = 2
 [sub_resource type="CanvasItemMaterial" id=2]
 blend_mode = 1
 light_mode = 1
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+font_data = ExtResource( 22 )
 
 [node name="MainGame" type="Node2D"]
 position = Vector2( 0.971313, -2.67352 )
@@ -394,10 +399,18 @@ position = Vector2( 123.295, 116.501 )
 position = Vector2( 831.325, 116.712 )
 
 [node name="Location5" type="Node2D" parent="ItemSpawn"]
-position = Vector2( 767.029, 458.673 )
+position = Vector2( 767.029, 464.673 )
 
 [node name="Location6" type="Node2D" parent="ItemSpawn"]
-position = Vector2( 271.029, 458.674 )
+position = Vector2( 271.029, 464.674 )
+
+[node name="fps_label" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]
 [connection signal="timeout" from="ItemTimer" to="." method="_on_ItemTimer_timeout"]
 
