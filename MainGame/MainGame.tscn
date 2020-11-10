@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Tilesets/NewMap.tres" type="TileSet" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -17,11 +17,9 @@
 [ext_resource path="res://Particles/fireflies.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Player/Player4.tscn" type="PackedScene" id=16]
 [ext_resource path="res://UI/Lives.tscn" type="PackedScene" id=17]
-[ext_resource path="res://UI/virtual_guy.png" type="Texture" id=18]
-[ext_resource path="res://UI/ninja_frog.png" type="Texture" id=19]
-[ext_resource path="res://UI/pink_man.png" type="Texture" id=20]
 [ext_resource path="res://Materials/Iceland Theme.wav" type="AudioStream" id=21]
 [ext_resource path="res://fonts/compass-pro-v1.1/CompassPro.otf" type="DynamicFontData" id=22]
+[ext_resource path="res://Materials/Fruit collect 1.wav" type="AudioStream" id=23]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
@@ -344,41 +342,6 @@ scale = Vector2( 1.28073, 1.19442 )
 texture = ExtResource( 10 )
 offset = Vector2( -26.5, -39.3501 )
 
-[node name="Lives" type="Node2D" parent="."]
-visible = false
-position = Vector2( 79.0287, 50.6735 )
-scale = Vector2( 2, 2 )
-
-[node name="P1_lives" parent="Lives" instance=ExtResource( 17 )]
-
-[node name="Character" parent="Lives/P1_lives" index="0"]
-position = Vector2( -21, -4 )
-
-[node name="Sprite" parent="Lives/P1_lives" index="1"]
-position = Vector2( 24, 0 )
-
-[node name="RichTextLabel" parent="Lives/P1_lives" index="2"]
-margin_left = -8.0
-margin_right = 144.0
-
-[node name="P2_lives" parent="Lives" instance=ExtResource( 17 )]
-position = Vector2( 104, -1 )
-
-[node name="Character" parent="Lives/P2_lives" index="0"]
-texture = ExtResource( 19 )
-
-[node name="P3_lives" parent="Lives" instance=ExtResource( 17 )]
-position = Vector2( 184, -1 )
-
-[node name="Character" parent="Lives/P3_lives" index="0"]
-texture = ExtResource( 20 )
-
-[node name="P4_lives" parent="Lives" instance=ExtResource( 17 )]
-position = Vector2( 264, -1 )
-
-[node name="Character" parent="Lives/P4_lives" index="0"]
-texture = ExtResource( 18 )
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 21 )
 volume_db = -20.715
@@ -411,15 +374,10 @@ custom_fonts/font = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="PassBomb" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 23 )
 [connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]
 [connection signal="timeout" from="ItemTimer" to="." method="_on_ItemTimer_timeout"]
 
 [editable path="Player"]
-
-[editable path="Lives/P1_lives"]
-
-[editable path="Lives/P2_lives"]
-
-[editable path="Lives/P3_lives"]
-
-[editable path="Lives/P4_lives"]

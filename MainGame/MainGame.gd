@@ -6,13 +6,11 @@ onready var player = $Player
 onready var player2 = $Player2
 onready var player3 = $Player3
 onready var player4 = $Player4
-onready var p1_lives = $Lives/P1_lives
-onready var p2_lives = $Lives/P2_lives
-onready var p3_lives = $Lives/P3_lives
-onready var p4_lives = $Lives/P4_lives
+
 onready var itembox = $ItemBox
 onready var itemspawn = $ItemSpawn
 onready var fps = $fps_label
+onready var passbomb_sound = $PassBomb
 onready var bulletIns = preload("res://Items/Bullet.tscn")
 var confetti = preload("res://Items/Confetti.tscn")
 var deatheffect = preload("res://Items/Deatheffect.tscn")
@@ -135,6 +133,7 @@ func updateplayer(playerid):
 
 func passbomb(playerid,timercount):
 	print(timercount)
+	passbomb_sound.play()
 	match playerid:
 		"Player":
 			player.canpass = false
